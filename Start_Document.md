@@ -20,6 +20,14 @@ The application is able to
 * Calculate the total revenue of the day
 * Keep track of all to go orders, their contents, customer details and price
 
+## Moscow Analysis
+| **Priority**  | **Items**                                                                                                                                                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Must Have     | GUI <br> Catalogue of menu items <br>  Assign orderd to a table <br> Calculate tab price per table <br> See order history per table and per cafe <br> Create take out orders that get picked up by customers <br> See map of tables (Prototype pattern) <br> |
+| Should Have   | Warning if a table gets an alcoholic menu item <br> Add tax on alcohol items <br> Make discounts for a table <br> Order Combo deals that consist of a num of items <br> Calculate total revenue of the day <br>                                              |
+| Could Have    | Stock System <br> Assign orders to staff <br> Custom dish from ingredients <br> Warning if no ingredients <br> State Pattern to track pick up orders (Ready, Picked up)                                                                                      |
+| Will Not Have | Editing the dish catalogue <br>                                                                                                                                                                                                                              |
+
 ## Input & Output
 
 #### Input
