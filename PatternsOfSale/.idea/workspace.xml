@@ -41,6 +41,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/University/Period_3/Design Patterns/PatternsOfSale/PatternsOfSale",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -85,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709038652827</updated>
       <workItem from="1709038653418" duration="84000" />
-      <workItem from="1709038822215" duration="230000" />
+      <workItem from="1709038822215" duration="1205000" />
     </task>
     <servers />
   </component>
