@@ -1,5 +1,5 @@
 /**
- * Class enables developers to make an instance of a Dish/Drink without relying on using parameters
+ * Interface provides developers with methods used in menu item classes (dishes/drinks/etc.). Part of factory method
  */
 public interface MenuItemInterface {
     double getPrice();
