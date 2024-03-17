@@ -39,6 +39,9 @@ GUI Library - Java Swing
 ## Class Diagram
 ![Class Diagram](PatternsOfSale_UML.png "Version 2.0 Class Diagram")
 
+## GUI Wireframes
+![Wireframe](Wireframe_sketch.png "Hand-sketched GUI frame")
+
 
 
 
