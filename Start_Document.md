@@ -1,43 +1,44 @@
-# Startdocument Patterns of Sale (PoS system)
+# Startdocument Patterns of Sale (Cafe Game)
 Assignment carried out by 3rd year NHL Stenden students:
 * Corvin Wittmaack
 * Mathew Shardin
 * Rob Veldman
 ## Introduction
-The team is set out to create an original take on a classic PoS (Point of Sale system) commonly found in restaurants, cafes or bars. The system usually runs on a shared computer, which can be accessed by all waiting staff to input orders, create a bill and accept payments. A PoS also contains catalogue of all dishes and drinks avaliable that can be ordered.
+The team is set out to create a small video game, where a player takes control of a cafe kitchen. The idea is loosely inspired by Papa's Kitechen game series. Patterns of Sale is a game that allows one to learn to use a touch screen/mouse, imporve hand-eye coordination and reaction times. The game is based around a player cooking (choosing) the correct dishes to satisfy a customer's order
 ## Application description
-Users of the application can:
-* View the catalogue of items to be ordered (menu)
-* View a map of tables in a diner
-* Assign orders to a table
-* See a bill of a table
-* See the history of orders per table and for the whole dining floor
-* Create take out orders that can be later picked up by customers
+##### Main game loop:
+1. Recieve an order (assignment) from one of the customers
+2. Choose the correct dishes from the dish catalogue to satisfy the order and send them in to the customer
+3. Recieve a score based on the order completed
+4. Repeat steps 1-3
+5. ??????
+6. PROFIT!
 
-The application is able to
-* Store all menu items
-* Keep track of all the tables, their current and past tabs
-* Calculate the total revenue of the day
-* Keep track of all to go orders, their contents, customer details and price
+##### Game features:
+* Different types of customers that asses the player's orders differently
+* High-score based game. Players get score per each order fullfill
+* GUI to interact with the game
+
+##### Additional information
+Customer types:
+* Normal Customer - evaluates the order by combining the score price of each correctly picked dish and subracting the score price of incorrectly added dishes
+* Karen Customer - works the same way as normal customer, but has a 50% chance to get mad and invalidate the whole order (grant 0 score points)
+
+GUI Library - Java Swing
+
 
 ## Moscow Analysis
-| **Priority**  | **Items**                                                                                                                                                                                                                                                    |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Must Have     | GUI <br> Catalogue of menu items <br>  Assign orderd to a table <br> Calculate tab price per table <br> See order history per table and per cafe <br> Create take out orders that get picked up by customers <br> See map of tables (Prototype pattern) <br> |
-| Should Have   | Warning if a table gets an alcoholic menu item <br> Add tax on alcohol items <br> Make discounts for a table <br> Order Combo deals that consist of a num of items <br> Calculate total revenue of the day <br> Have a happy hour toggle that decreases price of all tabs 10%                                              |
-| Could Have    | Stock System <br> Assign orders to staff <br> Custom dish from ingredients <br> Warning if no ingredients <br> State Pattern to track pick up orders (Ready, Picked up) <br> View pictures of foods in catalogue                                                                                      |
-| Will Not Have | Editing the dish catalogue <br>                                                                                                                                                                                                                              |
-
-## Input & Output
-
-#### Input
-
-#### Output
-
-#### Calculations
+| **Priority**  | **Items**                                                                                                                |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|
+| Must Have     | GUI <br> Basic game loop of picking dishes based on order <br>                                                           |
+| Should Have   | Images for all dishes <br> Different Types of customers that change their order evaluation <br> High score tracker <br>  |
+| Could Have    | Game sounds <br>                                                                                                         |
+| Will Not Have | Multiplayer mode <br>                                                                                                    |
 
 
 ## Class Diagram
+![Class Diagram](PatternsOfSale_UML.png "Version 2.0 Class Diagram")
+
 
 
 
