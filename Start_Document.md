@@ -24,7 +24,8 @@ Customer types:
 * Normal Customer - evaluates the order by combining the score price of each correctly picked dish and subracting the score price of incorrectly added dishes
 * Karen Customer - works the same way as normal customer, but has a 50% chance to get mad and invalidate the whole order (grant 0 score points)
 
-GUI Library - Java Swing
+Development Language: C#
+GUI Framework: .NET MAUI
 
 
 ## Moscow Analysis
