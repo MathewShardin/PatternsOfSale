@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    interface TimeListener
+    internal interface TimerInterface
     {
-        void UpdateTick(DateTime Tick);
+        void UpdateTick(int tick);
     }
 }

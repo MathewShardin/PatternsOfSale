@@ -1,9 +1,10 @@
-﻿namespace PatternsOfSale;
-
-public partial class AppShell : Shell
+﻿namespace PatternsOfSale
 {
-	public AppShell()
-	{
-		InitializeComponent();
-	}
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
 }
