@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using PatternsOfSale.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace PatternsOfSale
 {
     internal class GameManager : ObservableObject
     {
-        [ObservableProperty]
-        private DateTime currentTime { get; set; }
-        private DateTime timePlayed { get; set; }
+        public DateTime CurrentTime { get; private set; }
+        public DateTime CimePlayed { get; private set; }
+        public PlayerKitchen Kitchen { get; private set; }
         
         public GameManager() {
             
