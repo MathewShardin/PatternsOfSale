@@ -18,7 +18,7 @@ namespace PatternsOfSale.Models
         {
             double finalScore = 0;
             double scoreMultiplier = time;
-            double points = assignment.checkAssCompletion(input);\
+            double points = assignment.checkAssCompletion(input);
 
             //if the user neeeds longer than 3 sek to complete the order, the score is halved
             if(time < GetGoodThreshold())
@@ -30,6 +30,8 @@ namespace PatternsOfSale.Models
             }
 
             finalScore = points * scoreMultiplier;
+
+            return finalScore;
         }
 
         public override Assignment GetAssignment(int numOfDishes)

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace PatternsOfSale.Models
 {
@@ -84,10 +83,7 @@ namespace PatternsOfSale.Models
         public double CheckAssFroCustomer(Customer customer)
         {
             SetCustomer(customer);
-            foreach(Order order in dishPickUpStation)
-            {
-                
-            }
+            
                 
         }
         /// <summary>

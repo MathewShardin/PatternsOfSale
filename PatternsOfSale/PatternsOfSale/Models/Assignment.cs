@@ -23,8 +23,8 @@ namespace PatternsOfSale.Models
         public void addDishes(int numOfDishes)
         {
             // TO DO add random dishes
-            Order beerOrder = new BeerFactory();
-            ItemInterface beerItem = beerOrder.createMenuItem();
+            //Order beerOrder = new BeerFactory();
+            //ItemInterface beerItem = beerOrder.createMenuItem();
         }
 
         /// <summary>
