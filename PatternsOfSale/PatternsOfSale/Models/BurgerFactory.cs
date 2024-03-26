@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class BurgerFactory
+    public class BurgerFactory
     {
+
     }
 }

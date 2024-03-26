@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class BeerFactory
+    public class BeerFactory
     {
     }
 }

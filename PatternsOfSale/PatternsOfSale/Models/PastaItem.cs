@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class PastaItem
+    /// <summary>
+    /// Pasta menu Item is one of the items that a customer can order.
+    /// </summary>
+    public class PastaItem : ItemInterface
     {
+        public double getPrice()
+        {
+            return 10;
+        }
     }
 }

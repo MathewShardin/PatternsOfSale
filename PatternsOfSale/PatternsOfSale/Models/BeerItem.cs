@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class BeerItem
+    /// <summary>
+    /// Beer menu Item is one of the items that a customer can order.
+    /// </summary>
+    public class BeerItem : ItemInterface
     {
+        public double getPrice()
+        {
+            return 1;
+        }
     }
 }

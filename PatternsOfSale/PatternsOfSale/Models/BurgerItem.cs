@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class BurgerItem
+    /// <summary>
+    /// Burger menu Item is one of the items that a customer can order.
+    /// </summary>
+    public class BurgerItem : ItemInterface
     {
+
+    public double getPrice()
+        {
+            return 5;
+        }
     }
 }
