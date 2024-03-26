@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PatternsOfSale.MainPage">
 
-    <Grid BackgroundColor="Black">
+    <Grid BackgroundColor="#F3E5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
@@ -20,20 +20,31 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="White"/>
-        <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="White"/>
-        <Frame BackgroundColor="White" Grid.Column="3" Grid.Row="0" Padding="0">
-            <Label Text="Time: mm:ss" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StartButton"/>
+        <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StopButton"/>
+        <Frame BackgroundColor="#8B577A" Grid.Column="3" Grid.Row="0" CornerRadius="0" Margin="0">
+            <Label Text="Time: mm:ss" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
         </Frame>
-        <Frame BackgroundColor="White" Grid.Column=" 4" Grid.Row="0" Grid.ColumnSpan="2" Padding="0">
-            <Label Text="Score: 99999" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Frame BackgroundColor="#8B577A" Grid.Column=" 4" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="0" Margin="0">
+            <Label Text="Score: 99999" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ScoreLabel"/>
         </Frame>
-        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1"/>
-        <Label Text="You picked:" Grid.Column="1" Grid.Row="2"/>
-        <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="Gray">
-            
+        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+        <Label Text="You picked:" Grid.Column="1" Grid.Row="2" TextColor="Black"/>
+        <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Background="#8B577A">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Burger" Grid.Column="0" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BurgerButton"/>
+            <Button Text="Pasta" Grid.Column="1" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="PastaButton"/>
+            <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton"/>
+            <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton"/>
         </Grid>
-        <Button Text="Submit" Grid.Column="1" Grid.Row="5" BackgroundColor="White"/>
+        <Button Text="Submit" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
     </Grid>
 
 </ContentPage>
