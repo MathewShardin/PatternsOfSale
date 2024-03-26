@@ -16,11 +16,13 @@ namespace PatternsOfSale.Models
 
         public override double CheckAssignment(List<Order> input, int timeMultiplier)
         {
+            
             throw new NotImplementedException();
         }
 
         public override Assignment GetAssignment(int numOfDishes)
         {
+            
             throw new NotImplementedException();
         }
 

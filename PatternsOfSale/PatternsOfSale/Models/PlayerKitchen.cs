@@ -4,23 +4,107 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace PatternsOfSale.Models
 {
     public class PlayerKitchen
     {
-        public List<Order> orders { get; set; }
+        public List<Order> dishPickUpStation { get; set; }
         public int lastUnixTime { get; set; }
         public Customer currentCustomer { get; set; }
-        public int score { get; set; }
+        public double score { get; set; }
 
         public PlayerKitchen()
         {
-            orders = new List<Order>();
+            dishPickUpStation = new List<Order>();
             lastUnixTime = 0;
             currentCustomer = null;
             score = 0;
         }
+
+        public void AddOrder(Order order)
+        {
+            dishPickUpStation.Add(order);
+        }
+        public void RemoveOrder(Order order)
+        {
+            dishPickUpStation.Remove(order);
+        }
+
+        public List<Order> GetDishes()
+        {
+            return dishPickUpStation;
+        }
+
+        public void SetCustomer(Customer customer)
+        {
+            if(customer is KarenCustomer || customer is EasyCustomer)
+            {
+                currentCustomer = customer;
+            }
+            currentCustomer = customer;
+        }
+
+        public void UpdateTicker(int unixTime)
+        {
+            lastUnixTime = unixTime;
+        }
+        public double GetScore()
+        {
+            return score;
+        }
+
+        /// <summary>
+        /// makes sure that the score is not negative
+        /// </summary>
+        /// <param name="score"></param>
+        public void SetScore(double score)
+        {
+            if(score < 0 )
+            {
+                this.score = 0;
+                return;
+            }
+            this.score = score;
+        }
+
+        public void resetStats()
+        {
+            SetCustomer(null);
+            SetScore(0);
+            dishPickUpStation.Clear();
+            lastUnixTime = 0;
+        }
+
+        /// <summary>
+        /// Checks the current customer's assignment and updates the score
+        /// </summary>
+        /// <returns>The score of the Customer</returns>
+        public double CheckAssFroCustomer(Customer customer)
+        {
+            SetCustomer(customer);
+            foreach(Order order in dishPickUpStation)
+            {
+                
+            }
+                
+        }
+        /// <summary>
+        /// Submits the current customer's assignment and updates the score
+        /// </summary>
+        public void Submit()
+        {
+               if (currentCustomer != null)
+               {
+                //send the score of the customer to the game class
+
+                GetScore();
+                resetStats();
+               }
+            return;
+        }
+
 
 
 
