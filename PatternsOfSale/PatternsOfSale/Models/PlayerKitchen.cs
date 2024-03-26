@@ -80,10 +80,10 @@ namespace PatternsOfSale.Models
         /// Checks the current customer's assignment and updates the score
         /// </summary>
         /// <returns>The score of the Customer</returns>
-        public double CheckAssFroCustomer(Customer customer)
+        public double CheckAssForCustomer(Customer customer)
         {
             SetCustomer(customer);
-            
+            return 0;
                 
         }
         /// <summary>
