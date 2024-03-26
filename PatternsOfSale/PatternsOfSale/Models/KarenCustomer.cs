@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace PatternsOfSale.Models
 {
@@ -21,15 +20,23 @@ namespace PatternsOfSale.Models
             return CHANCE_TO_CANCEL_ORDER;
         }
         
-        public override double CheckAssignment(List<Order> input, int timeMultiplier)
+        public override double CheckAssignment(List<ItemInterface> input, double time)
         {
-            int scoreMultiplier = timeMultiplier;
-            this.assignment.checkAssCompletion(input);
+            double finalScore = 0;
+            double scoreMultiplier = time;
+            double points = assignment.checkAssCompletion(input); 
+            
+
             // 25% chance to cancel order
             if (shouldCancelOrder())
             {
-                return 0;
+                return finalScore;
             }
+
+
+
+            return finalScore;
+
 
 
         }

@@ -36,7 +36,7 @@ namespace PatternsOfSale.Models
 
         public abstract Assignment GetAssignment(int numOfDishes);
 
-        public abstract double CheckAssignment(List<Order> input, int timeMultiplier);
+        public abstract double CheckAssignment(List<ItemInterface> input, double time);
         //multiply the score by the timeMultiplier
     }
 }

@@ -14,10 +14,22 @@ namespace PatternsOfSale.Models
             this.assignment = base.assignment;
         }
 
-        public override double CheckAssignment(List<Order> input, int timeMultiplier)
+        public override double CheckAssignment(List<ItemInterface> input, double time)
         {
-            
-            throw new NotImplementedException();
+            double finalScore = 0;
+            double scoreMultiplier = time;
+            double points = assignment.checkAssCompletion(input);\
+
+            //if the user neeeds longer than 3 sek to complete the order, the score is halved
+            if(time < GetGoodThreshold())
+            {
+                scoreMultiplier = 1.5;
+            }else if(time > GetBadThreshold())
+            {
+                scoreMultiplier = 0.5;
+            }
+
+            finalScore = points * scoreMultiplier;
         }
 
         public override Assignment GetAssignment(int numOfDishes)
