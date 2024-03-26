@@ -9,29 +9,29 @@ namespace PatternsOfSale.Models
 {
     public class PlayerKitchen
     {
-        public List<Order> dishPickUpStation { get; set; }
+        public List<ItemInterface> dishPickUpStation { get; set; }
         public int lastUnixTime { get; set; }
         public Customer currentCustomer { get; set; }
         public double score { get; set; }
 
         public PlayerKitchen()
         {
-            dishPickUpStation = new List<Order>();
+            dishPickUpStation = new List<ItemInterface>();
             lastUnixTime = 0;
             currentCustomer = null;
             score = 0;
         }
 
-        public void AddOrder(Order order)
+        public void AddOrder(ItemInterface orderItem)
         {
-            dishPickUpStation.Add(order);
+            dishPickUpStation.Add(orderItem);
         }
-        public void RemoveOrder(Order order)
+        public void RemoveOrder(ItemInterface orderItem)
         {
-            dishPickUpStation.Remove(order);
+            dishPickUpStation.Remove(orderItem);
         }
 
-        public List<Order> GetDishes()
+        public List<ItemInterface> GetDishes()
         {
             return dishPickUpStation;
         }
@@ -83,6 +83,13 @@ namespace PatternsOfSale.Models
         public double CheckAssForCustomer(Customer customer)
         {
             SetCustomer(customer);
+            if(customer is KarenCustomer)
+            {
+                return customer.CheckAssignment(dishPickUpStation, lastUnixTime);
+            }else if(customer is EasyCustomer)
+            {
+                return customer.CheckAssignment(dishPickUpStation, lastUnixTime);
+            }
             return 0;
                 
         }
@@ -94,7 +101,7 @@ namespace PatternsOfSale.Models
                if (currentCustomer != null)
                {
                 //send the score of the customer to the game class
-
+                CheckAssForCustomer(currentCustomer);
                 GetScore();
                 resetStats();
                }

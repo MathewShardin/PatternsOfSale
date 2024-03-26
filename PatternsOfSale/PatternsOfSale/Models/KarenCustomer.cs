@@ -45,16 +45,22 @@ namespace PatternsOfSale.Models
             }
             else 
             {
-                scoreMultiplier = 0;  
+                scoreMultiplier = 1;  
             }
             finalScore = points * scoreMultiplier;
 
             return finalScore;
         }
 
+
+        //TODO: Implement GetAssignment
+        //gets a random assignment with a number of dishes
+
         public override Assignment GetAssignment(int numOfDishes)
         {
-            throw new NotImplementedException();
+            Assignment currentAss = this.assignment;
+            currentAss.addDishes(numOfDishes);
+            return currentAss;
         }
 
         public bool shouldCancelOrder()
