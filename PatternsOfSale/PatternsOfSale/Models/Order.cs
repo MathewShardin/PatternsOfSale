@@ -12,7 +12,7 @@ namespace PatternsOfSale.Models
     public abstract class Order
     {
         /// <summary>
-        /// Child classes of Order (Factories for each Menu Item that can ordered will return their respective Menu Itimes type
+        /// Child classes of Order (Factories for each Menu Item that can be ordered) will return their respective Menu Items type
         /// inside their implementations of createMenuItem method
         /// </summary>
         /// <returns>ItemInterface - Menu Item that a cutomer can order</returns>

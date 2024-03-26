@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,8 @@ namespace PatternsOfSale.Models
         public void addDishes(int numOfDishes)
         {
             // TO DO add random dishes
+            Order beerOrder = new BeerFactory();
+            ItemInterface beerItem = beerOrder.createMenuItem();
         }
 
         /// <summary>
@@ -59,6 +62,19 @@ namespace PatternsOfSale.Models
 
             }
             return finalScore;
+        }
+
+        /// <summary>
+        /// Method programmatically compiles a list of all child classes of Order class and returns it
+        /// </summary>
+        /// <param name="parent"> Parent class</param>
+        /// <returns>List of child classes</returns>
+        public static List<Type> GetSubclasses(Type parent)
+        {
+            Assembly assembly = Assembly.GetAssembly(parent);
+            return assembly.GetTypes()
+                           .Where(type => type.IsSubclassOf(parent))
+                           .ToList();
         }
     }
 }
