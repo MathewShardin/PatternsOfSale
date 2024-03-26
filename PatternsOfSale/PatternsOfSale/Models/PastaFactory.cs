@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    public class PastaFactory
+    /// <summary>
+    /// Concrete creator that returns a Pasta Item (Menu Item that a customer can order)
+    /// </summary>
+    public class PastaFactory : Order
     {
+        public override ItemInterface createMenuItem()
+        {
+            return new PastaItem();
+        }
     }
 }
