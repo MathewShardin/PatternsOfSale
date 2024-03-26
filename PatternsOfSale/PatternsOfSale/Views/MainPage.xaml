@@ -46,5 +46,4 @@
         </Grid>
         <Button Text="Submit" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
     </Grid>
-
 </ContentPage>

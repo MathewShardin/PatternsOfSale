@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale
 {
-    internal class GameManager : ObservableObject
+    public class GameManager : ObservableObject
     {
         public DateTime CurrentTime { get; private set; }
         public DateTime CimePlayed { get; private set; }

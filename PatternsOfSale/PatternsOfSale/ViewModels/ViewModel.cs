@@ -9,5 +9,10 @@ namespace PatternsOfSale.ViewModels
 {
     public class ViewModel : ObservableObject
     {
+        public GameManager GameManager { get; private set; }
+
+        protected ViewModel(GameManager gameManager) {
+            this.GameManager = gameManager;
+        }
     }
 }
