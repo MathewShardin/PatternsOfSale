@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class Order
+    public class Order
     {
     }
 }
