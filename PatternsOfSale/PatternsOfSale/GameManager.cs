@@ -11,11 +11,13 @@ namespace PatternsOfSale
     public class GameManager : ObservableObject
     {
         public DateTime CurrentTime { get; private set; }
-        public DateTime CimePlayed { get; private set; }
+        public DateTime TimePlayed { get; private set; }
         public PlayerKitchen Kitchen { get; private set; }
         
         public GameManager() {
-            
+            this.Kitchen = new PlayerKitchen();
+            this.CurrentTime = DateTime.Now;
+            this.TimePlayed = DateTime.Now;
         }
 
     }

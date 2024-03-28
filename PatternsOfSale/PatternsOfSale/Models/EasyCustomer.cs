@@ -32,7 +32,7 @@ namespace PatternsOfSale.Models
             }
             else
             {
-                scoreMultiplier = ;
+                scoreMultiplier = 1;
             }
             finalScore = points * scoreMultiplier;
 
@@ -46,8 +46,4 @@ namespace PatternsOfSale.Models
         }
     }
 
-      
-
-
-    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Animations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,12 @@ namespace PatternsOfSale.Models
 {
     internal class Timer : TimerInterface
     {
+        private int Tick;
         public Timer() { }
 
         public void UpdateTick(int tick)
         {
-            throw new NotImplementedException();
+            this.Tick += tick;
         }
     }
 }
