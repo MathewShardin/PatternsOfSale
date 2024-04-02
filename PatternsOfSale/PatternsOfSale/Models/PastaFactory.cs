@@ -11,7 +11,7 @@ namespace PatternsOfSale.Models
     /// </summary>
     public class PastaFactory : Order
     {
-        public override ItemInterface createMenuItem()
+        public override ItemInterface CreateMenuItem()
         {
             return new PastaItem();
         }

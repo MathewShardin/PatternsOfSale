@@ -10,9 +10,12 @@ namespace PatternsOfSale.Models
     {
         const double CHANCE_TO_CANCEL_ORDER = 25;
 
-        public KarenCustomer(Assignment assignment) : base(assignment)
+        public KarenCustomer(int numOfDishes) : base(numOfDishes)
         {
-            this.assignment = base.assignment;
+            Assignment newAss = new Assignment();
+            newAss.AddDishes(numOfDishes);
+            this.assignment = newAss;
+
         }
 
         public double GetCancellationChance()
@@ -20,15 +23,15 @@ namespace PatternsOfSale.Models
             return CHANCE_TO_CANCEL_ORDER;
         }
         
-        public override double CheckAssignment(List<ItemInterface> input, double time)
+        public override double CheckAssignment(List<ItemInterface> input, long time)
         {
             double finalScore = 0;
             double scoreMultiplier = time;
-            double points = assignment.checkAssCompletion(input); 
+            double points = assignment.CheckAssCompletion(input); 
             
 
             // 25% chance to cancel order
-            if (shouldCancelOrder())
+            if (ShouldCancelOrder())
             {
                 return finalScore;
             }
@@ -56,14 +59,9 @@ namespace PatternsOfSale.Models
         //TODO: Implement GetAssignment
         //gets a random assignment with a number of dishes
 
-        public override Assignment GetAssignment(int numOfDishes)
-        {
-            Assignment currentAss = this.assignment;
-            currentAss.addDishes(numOfDishes);
-            return currentAss;
-        }
+    
 
-        public bool shouldCancelOrder()
+        public bool ShouldCancelOrder()
         {
             Random random = new Random();
             // 25% chance to cancel order

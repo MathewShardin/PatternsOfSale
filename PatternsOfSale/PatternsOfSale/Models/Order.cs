@@ -16,11 +16,11 @@ namespace PatternsOfSale.Models
         /// inside their implementations of createMenuItem method
         /// </summary>
         /// <returns>ItemInterface - Menu Item that a cutomer can order</returns>
-        public abstract ItemInterface createMenuItem();
+        public abstract ItemInterface CreateMenuItem();
 
-        public ItemInterface makeOrder()
+        public ItemInterface MakeOrder()
         { 
-            ItemInterface item = createMenuItem();
+            ItemInterface item = CreateMenuItem();
             return item;
         }
 

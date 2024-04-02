@@ -9,107 +9,90 @@ namespace PatternsOfSale.Models
 {
     public class PlayerKitchen : TimerInterface
     {
-        public List<ItemInterface> dishPickUpStation { get; set; }
-        public int lastUnixTime { get; set; }
-        public Customer currentCustomer { get; set; }
-        public double score { get; set; }
+        public List<ItemInterface> DishPickUpStation { get; set; }
+        public long LastUnixTime { get; set; } // TIme stamp of last Ass. placed
+        public long PassedSinceLastAssignment { get; set; }
+        public Customer? CurrentCustomer { get; set; }
+        public double Score { get; private set; }
 
         public PlayerKitchen()
         {
-            dishPickUpStation = new List<ItemInterface>();
-            lastUnixTime = 0;
-            currentCustomer = null;
-            score = 0;
+            DishPickUpStation = new List<ItemInterface>();
+            LastUnixTime = 0;
+            Score = 0;
         }
 
         public void AddOrder(ItemInterface orderItem)
         {
-            dishPickUpStation.Add(orderItem);
+            DishPickUpStation.Add(orderItem);
         }
         public void RemoveOrder(ItemInterface orderItem)
         {
-            dishPickUpStation.Remove(orderItem);
+            DishPickUpStation.Remove(orderItem);
         }
 
-        public List<ItemInterface> GetDishes()
-        {
-            return dishPickUpStation;
-        }
 
-        public void SetCustomer(Customer customer)
-        {
-            if(customer is KarenCustomer || customer is EasyCustomer)
-            {
-                currentCustomer = customer;
-            }
-            currentCustomer = customer;
-        }
-
-        public double GetScore()
-        {
-            return score;
-        }
 
         /// <summary>
-        /// makes sure that the score is not negative
+        /// Sets the score field to a input score, but makes sure that the score is never negative
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="score">Double. New score to be set</param>
         public void SetScore(double score)
         {
             if(score < 0 )
             {
-                this.score = 0;
+                this.Score = 0;
                 return;
             }
-            this.score = score;
+            this.Score = score;
         }
 
-        public void resetStats()
+        /// <summary>
+        /// Adds the input to the score field of player
+        /// </summary>
+        /// <param name="scoreInp">Double. Score to be added or subtracted</param>
+        public void AddScore(double scoreInp)
         {
-            SetCustomer(null);
-            SetScore(0);
-            dishPickUpStation.Clear();
-            lastUnixTime = 0;
+            SetScore(this.Score + scoreInp);
         }
 
         /// <summary>
         /// Checks the current customer's assignment and updates the score
         /// </summary>
-        /// <returns>The score of the Customer</returns>
-        public double CheckAssForCustomer(Customer customer)
+        public void CheckAssForCustomer()
         {
-            SetCustomer(customer);
-            if(customer is KarenCustomer)
+            if (this.CurrentCustomer != null)
             {
-                return customer.CheckAssignment(dishPickUpStation, lastUnixTime);
-            }else if(customer is EasyCustomer)
-            {
-                return customer.CheckAssignment(dishPickUpStation, lastUnixTime);
+                double tempScore = this.CurrentCustomer.CheckAssignment(DishPickUpStation, PassedSinceLastAssignment);
+                AddScore(tempScore);
             }
-            return 0;
-                
         }
+
         /// <summary>
-        /// Submits the current customer's assignment and updates the score
+        /// Prepares the PlayerKitchen object to recieve a new Assignment. Method shoud be called by GameManager
         /// </summary>
         public void Submit()
         {
-               if (currentCustomer != null)
-               {
-                //send the score of the customer to the game class
-                CheckAssForCustomer(currentCustomer);
-                GetScore();
-                resetStats();
-               }
-            return;
+            if (this.CurrentCustomer != null)
+            {
+                CheckAssForCustomer();
+                this.DishPickUpStation.Clear();
+            }
         }
+       
 
-        public void UpdateTime(int timestamp)
+        public void UpdateTime(long timestamp)
         {
-            int finalTime = this.lastUnixTime - timestamp;
-
-            this.lastUnixTime = finalTime;
-
+            this.PassedSinceLastAssignment = this.LastUnixTime - timestamp;
         }
+
+        public void NewGameRound(Customer cust, long timeStamp)
+        {
+            this.LastUnixTime = timeStamp;
+            this.CurrentCustomer = cust;
+            this.DishPickUpStation.Clear();
+        }
+
+
     }
 }

@@ -12,7 +12,7 @@ namespace PatternsOfSale.Models
     /// </summary>
     public class ColaFactory : Order
     {
-        public override ItemInterface createMenuItem()
+        public override ItemInterface CreateMenuItem()
         {
             return new ColaItem();
         }

@@ -1,7 +1,10 @@
 ﻿<!--<?xml version="1.0" encoding="utf-8" ?>-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PatternsOfSale.MainPage">
+             x:Class="PatternsOfSale.Views.MainPage"
+             xmlns:viewmodel="clr-namespace:PatternsOfSale.ViewModels"
+             xmlns:model="clr-namespace:PatternsOfSale.Models"
+             x:DataType="viewmodel:MainPageViewModel">
 
     <Grid BackgroundColor="#F3E5F5">
         <Grid.RowDefinitions>
@@ -18,17 +21,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/> 
         </Grid.ColumnDefinitions>
         <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StartButton"/>
         <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StopButton"/>
         <Frame BackgroundColor="#8B577A" Grid.Column="3" Grid.Row="0" CornerRadius="0" Margin="0">
-            <Label Text="Time: mm:ss" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
+            <Label Text="" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
         </Frame>
         <Frame BackgroundColor="#8B577A" Grid.Column=" 4" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="0" Margin="0">
             <Label Text="Score: 99999" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ScoreLabel"/>
         </Frame>
-        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+        <ScrollView Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
         <Label Text="You picked:" Grid.Column="1" Grid.Row="2" TextColor="Black"/>
         <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Background="#8B577A">
             <Grid.RowDefinitions>

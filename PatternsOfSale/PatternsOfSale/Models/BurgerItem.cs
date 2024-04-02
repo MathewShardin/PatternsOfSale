@@ -12,7 +12,7 @@ namespace PatternsOfSale.Models
     public class BurgerItem : ItemInterface
     {
 
-    public double getPrice()
+    public double GetPrice()
         {
             return 5;
         }

@@ -1,6 +1,6 @@
 ﻿using PatternsOfSale.ViewModels;
 
-namespace PatternsOfSale
+namespace PatternsOfSale.Views
 {
     public partial class MainPage : ContentPage
     {

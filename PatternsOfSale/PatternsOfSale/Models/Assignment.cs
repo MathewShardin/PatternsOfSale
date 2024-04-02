@@ -26,7 +26,7 @@ namespace PatternsOfSale.Models
         /// </summary>
         /// <param name="numOfDishes"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public void addDishes(int numOfDishes)
+        public void AddDishes(int numOfDishes)
         {
             // Clean the dishAssignment list if the method is accidentally called more than once
             this.dishAssignment.Clear();
@@ -42,7 +42,7 @@ namespace PatternsOfSale.Models
             {
                 // Make PlaceHolder assignment
                 Order beerOrder = new BeerFactory();
-                ItemInterface beerItem = beerOrder.createMenuItem();
+                ItemInterface beerItem = beerOrder.CreateMenuItem();
                 this.dishAssignment.Add(beerItem);
                 throw new InvalidOperationException("No subclasses found.");
             }
@@ -58,7 +58,7 @@ namespace PatternsOfSale.Models
                 Order? newOrderFactory = Activator.CreateInstance(randomType) as Order;
                 if (newOrderFactory != null)
                 {
-                    ItemInterface newItem = newOrderFactory.createMenuItem();
+                    ItemInterface newItem = newOrderFactory.CreateMenuItem();
                     this.dishAssignment.Add(newItem);
                 } 
             }
@@ -69,7 +69,7 @@ namespace PatternsOfSale.Models
         /// </summary>
         /// <param name="dishAssignment"> A List of Menu Items picked by user</param>
         /// <returns>Double. A sum of points of correctly chosen dishes minus points of incorrectly choosen dishes</returns>
-        public double checkAssCompletion(List<ItemInterface> inputSelection)
+        public double CheckAssCompletion(List<ItemInterface> inputSelection)
         {
             double finalScore = 0;
             List<ItemInterface> tempDishAssignment = dishAssignment;
@@ -83,7 +83,7 @@ namespace PatternsOfSale.Models
                 if (foundItem != null) 
                 {
                     // Add the score value of a Menu Item if it was picked correctly
-                    finalScore += foundItem.getPrice();
+                    finalScore += foundItem.GetPrice();
                     // Remove the Menu Item from Assignment so that players cannot just alway choose one item and get points for it
                     tempDishAssignment.Remove(foundItem);
                 }
@@ -94,7 +94,7 @@ namespace PatternsOfSale.Models
             {
                 if (dish != null)
                 {
-                    finalScore -= dish.getPrice();
+                    finalScore -= dish.GetPrice();
                 }
 
             }

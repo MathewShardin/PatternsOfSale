@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PatternsOfSale.Models;
 
 namespace PatternsOfSale.ViewModels
 {
@@ -13,19 +15,41 @@ namespace PatternsOfSale.ViewModels
         private double _score;
 
         [ObservableProperty]
-        private DateTime _time;
+        private long _time;
 
         [ObservableProperty]
-        private string _order;
+        private Assignment? _assignment;
 
         [ObservableProperty]
-        private string _pickedItems;
-        public MainPageViewModel(/*GameManager gameManager*/) /*: base(gameManager)*/
+        private List<ItemInterface> _pickedItems;
+        public MainPageViewModel(GameManager gameManager) : base(gameManager)
         {
             this._score = 0;
-            this._time = DateTime.Now;
-            this._order = string.Empty;
-            this._pickedItems = string.Empty;
+            this._time = 0;
+            this._assignment = null;
+            this._pickedItems = new List<ItemInterface> { };
+        }
+
+        [RelayCommand]
+        private async Task StartGame()
+        {
+            GameManager.StartGame();
+            Score = GameManager.Kitchen.Score;
+            Assignment = GameManager.Kitchen.CurrentCustomer.assignment;
+        }
+
+        [RelayCommand]
+        private async Task StopGame()
+        {
+            GameManager.StopGame();
+
+        }
+
+        [RelayCommand]
+        private async Task Submit()
+        {
+            GameManager.Submit();
+            Score = GameManager.Kitchen.Score;
         }
     }
 }

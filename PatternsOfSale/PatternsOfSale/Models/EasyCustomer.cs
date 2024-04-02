@@ -9,16 +9,18 @@ namespace PatternsOfSale.Models
 {
     public class EasyCustomer : Customer
     {
-        public EasyCustomer(Assignment assignment) : base(assignment)
+        public EasyCustomer(int numOfDishes) : base(numOfDishes)
         {
-            this.assignment = base.assignment;
+            Assignment newAss = new Assignment();
+            newAss.AddDishes(numOfDishes);
+            this.assignment = newAss;
         }
 
-        public override double CheckAssignment(List<ItemInterface> input, double time)
+        public override double CheckAssignment(List<ItemInterface> input, long time)
         {
             double finalScore = 0;
             double scoreMultiplier = time;
-            double points = assignment.checkAssCompletion(input);
+            double points = assignment.CheckAssCompletion(input);
 
             // is time is less than 3 seconds, score is multiplied by 1.5
             if (time < GetGoodThreshold())
@@ -38,12 +40,7 @@ namespace PatternsOfSale.Models
 
             return finalScore;
         }  
-        public override Assignment GetAssignment(int numOfDishes)
-        {
-            Assignment currentAss = this.assignment;
-            currentAss.addDishes(numOfDishes);
-            return currentAss;
-        }
+    
     }
 
 }

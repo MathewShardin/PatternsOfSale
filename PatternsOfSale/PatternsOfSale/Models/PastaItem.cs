@@ -11,7 +11,7 @@ namespace PatternsOfSale.Models
     /// </summary>
     public class PastaItem : ItemInterface
     {
-        public double getPrice()
+        public double GetPrice()
         {
             return 10;
         }

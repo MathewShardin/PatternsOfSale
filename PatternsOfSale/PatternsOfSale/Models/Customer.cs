@@ -12,31 +12,30 @@ namespace PatternsOfSale.Models
         public Assignment assignment { get; set; }
         
         //use this for the time multiplier
-        const double GOOD_THRESHOLD = 3;
-        const double BAD_THRESHOLD = 6;
+        const long GOOD_THRESHOLD = 3;
+        const long BAD_THRESHOLD = 6;
 
-
-        public Customer(Assignment assignment)
+        public Customer(int numOfDishes)
         {
-            this.assignment = assignment;
+            Assignment newAss = new Assignment();
+            newAss.AddDishes(numOfDishes);
+            this.assignment = newAss;
         }
 
         //getter for constant GOOD_THRESHOLD
-        public double GetGoodThreshold()
+        public long GetGoodThreshold()
         {
             return GOOD_THRESHOLD;
         }
 
         //getter for constant BAD_THRESHOLD
 
-        public double GetBadThreshold()
+        public long GetBadThreshold()
         {
             return BAD_THRESHOLD;
         }
 
-        public abstract Assignment GetAssignment(int numOfDishes);
-
-        public abstract double CheckAssignment(List<ItemInterface> input, double time);
         //multiply the score by the timeMultiplier
+        public abstract double CheckAssignment(List<ItemInterface> input, long time);
     }
 }

@@ -8,6 +8,6 @@ namespace PatternsOfSale.Models
 {
     public interface TimerInterface
     {
-        public void UpdateTime(int timestamp);
+        public void UpdateTime(long timestamp);
     }
 }

@@ -1,5 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using PatternsOfSale.Models;
 using Microsoft.Maui.LifecycleEvents;
+using PatternsOfSale.ViewModels;
+using PatternsOfSale.Views;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace PatternsOfSale
 {
@@ -14,8 +19,20 @@ namespace PatternsOfSale
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .Services
+                .AddViewModels()
+                .AddViews()
+                .AddSingleton<GameManager>()
+                .AddSingleton<GameTimer>();
 
+            GameManager gameManager = new GameManager();
+            GameTimer gameTimer = new GameTimer();
+
+            while (gameManager.isGameRunning == true)
+            {
+                gameTimer.SendTick();
+            }
 #if WINDOWS
         builder.ConfigureLifecycleEvents(events =>
         {

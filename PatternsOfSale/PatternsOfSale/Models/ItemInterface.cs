@@ -12,6 +12,6 @@ namespace PatternsOfSale.Models
     /// </summary>
     public interface ItemInterface
     {
-        public double getPrice();
+        public double GetPrice();
     }
 }
