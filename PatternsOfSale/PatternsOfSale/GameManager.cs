@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale
 {
-    public class GameManager : ObservableObject
+    public class GameManager : ObservableObject , TimerInterface
     {
         public DateTime CurrentTime { get; private set; }
         public DateTime TimePlayed { get; private set; }
@@ -20,5 +20,9 @@ namespace PatternsOfSale
             this.TimePlayed = DateTime.Now;
         }
 
+        public void UpdateTime(int timestamp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

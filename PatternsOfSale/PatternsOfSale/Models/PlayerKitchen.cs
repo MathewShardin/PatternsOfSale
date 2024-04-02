@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    public class PlayerKitchen
+    public class PlayerKitchen : TimerInterface
     {
         public List<ItemInterface> dishPickUpStation { get; set; }
         public int lastUnixTime { get; set; }
@@ -45,10 +45,6 @@ namespace PatternsOfSale.Models
             currentCustomer = customer;
         }
 
-        public void UpdateTicker(int unixTime)
-        {
-            lastUnixTime = unixTime;
-        }
         public double GetScore()
         {
             return score;
@@ -108,8 +104,12 @@ namespace PatternsOfSale.Models
             return;
         }
 
+        public void UpdateTime(int timestamp)
+        {
+            int finalTime = this.lastUnixTime - timestamp;
 
+            this.lastUnixTime = finalTime;
 
-
+        }
     }
 }

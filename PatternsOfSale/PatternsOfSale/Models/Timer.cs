@@ -7,14 +7,32 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.Models
 {
-    internal class Timer : TimerInterface
+    public class Timer
     {
-        private int Tick;
-        public Timer() { }
+        public List<TimerInterface> timerInterfaces { get; set; }
 
-        public void UpdateTick(int tick)
+        
+        public Timer() 
         {
-            this.Tick += tick;
+            this.timerInterfaces = new List<TimerInterface>();
+        }
+
+        public void AddSubscriber(TimerInterface subscriber)
+        {
+            timerInterfaces.Add(subscriber);
+        }
+
+        public void RemoveSubscriber(TimerInterface subscriber)
+        {
+            timerInterfaces.Remove(subscriber);
+        }
+
+        public void sendTickVoid()
+        {
+            foreach(TimerInterface subscriber in timerInterfaces)
+            {
+                subscriber.UpdateTime(1);
+            }
         }
     }
 }
