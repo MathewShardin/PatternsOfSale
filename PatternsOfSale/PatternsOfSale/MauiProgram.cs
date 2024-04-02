@@ -28,6 +28,8 @@ namespace PatternsOfSale
 
             GameManager gameManager = new GameManager();
             GameTimer gameTimer = new GameTimer();
+            gameTimer.AddSubscriber(gameManager);
+
 
             while (gameManager.isGameRunning == true)
             {

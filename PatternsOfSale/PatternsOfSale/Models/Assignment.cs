@@ -30,11 +30,7 @@ namespace PatternsOfSale.Models
         {
             // Clean the dishAssignment list if the method is accidentally called more than once
             this.dishAssignment.Clear();
-            // Make sure that input num of dishes to be ordered is from 1 to 10
-            if (numOfDishes > 10 || numOfDishes <= 0)
-            {
-                numOfDishes = 5;
-            }
+
             List<Type> listOfDishes = GetSubclasses();
             int listDishesCount = listOfDishes.Count; // Number of items avaliable to be ordered
             // Check that the list got properly populated

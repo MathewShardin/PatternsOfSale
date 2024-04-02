@@ -12,7 +12,9 @@ namespace PatternsOfSale
     public class GameManager : TimerInterface
     {
         public long CurrentTime { get; private set; }
-        public long TimePlayed { get; private set; }
+        public DateTime TimePlayed { get; private set; }
+        public long TimeSinceLastAssignment { get; private set; }
+        public long LastUnixTime { get; private set; }
         public PlayerKitchen Kitchen { get; private set; }
         public bool isGameRunning { get; private set; }
         const int MAXNUMBEROFDISHES = 10;
@@ -20,28 +22,47 @@ namespace PatternsOfSale
         public GameManager() {
             this.Kitchen = new PlayerKitchen();
             this.CurrentTime = 0;
-            this.TimePlayed = 0;
+            this.TimePlayed = DateTime.Now;
             this.isGameRunning = false;
         }
 
         public void UpdateTime(long timestamp)
         {
             //
-            
+            //TimePlayed -> time since game was started
+
+            //CUrrent time -> time since last order
+            //get the time since last order
+
+            //every second gets current time in UNIX format
+            //1 time since gamne started 
+            //2 time since last order
+            //1-> increase the time played
+
+
+            //2 -> time needed to make the order
+            this.TimeSinceLastAssignment = this.LastUnixTime - timestamp;
+
         }
 
         public void StartGame()
         {
+            GameTimer gameTimer = new GameTimer(); // REFERS TO SINGELTON
             // Reset Player
-            this.Kitchen = new PlayerKitchen();
+            PlayerKitchen newplayerKitchen = new PlayerKitchen();
+            gameTimer.AddSubscriber(newplayerKitchen);
+            this.Kitchen = newplayerKitchen;
             // Change game status
             this.isGameRunning = true;
+            this.Kitchen.NewGameRound(GetRandomCustomer(), CurrentTime);
         }
 
         public void StopGame()
         {
+            GameTimer gameTimer = new GameTimer(); // REFERS TO SINGELTON
             // Change game status
             this.isGameRunning = false;
+            gameTimer.RemoveSubscriber(this.Kitchen);
         }
 
         public void Submit()
