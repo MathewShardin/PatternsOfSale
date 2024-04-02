@@ -18,16 +18,20 @@ namespace PatternsOfSale.ViewModels
         private long _time;
 
         [ObservableProperty]
+        private long _totalTime;
+
+        [ObservableProperty]
         private Assignment? _assignment;
 
         [ObservableProperty]
         private List<ItemInterface> _pickedItems;
         public MainPageViewModel(GameManager gameManager) : base(gameManager)
         {
-            this._score = 0;
-            this._time = 0;
-            this._assignment = null;
-            this._pickedItems = new List<ItemInterface> { };
+            this.Score = 0;
+            this.Time = 100;
+            this.Assignment = null;
+            this.PickedItems = new List<ItemInterface> { };
+            this.TotalTime = 2000;
         }
 
         [RelayCommand]

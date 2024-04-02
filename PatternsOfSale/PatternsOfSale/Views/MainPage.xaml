@@ -9,7 +9,9 @@
     <Grid BackgroundColor="#F3E5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
@@ -25,15 +27,27 @@
         </Grid.ColumnDefinitions>
         <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StartButton"/>
         <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StopButton"/>
-        <Frame BackgroundColor="#8B577A" Grid.Column="3" Grid.Row="0" CornerRadius="0" Margin="0">
-            <Label Text="" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
+        <Grid Grid.Column="3" Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="{ Binding Time, StringFormat='Timer: {0}' }" Grid.Column="0" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0"/>
+            <Button Text="{ Binding TotalTime, StringFormat='Time played: {0}' }" Grid.Column="1" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0"/>
+        </Grid>
+        <Button Text="{ Binding Score, StringFormat='Score: {0}' }" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
+        <!--<Frame BackgroundColor="#8B577A" Grid.Column="3" Grid.Row="0" CornerRadius="0" Margin="0">
+            <Label Text="{ Binding Time, StringFormat='Time: {0}' }" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
         </Frame>
         <Frame BackgroundColor="#8B577A" Grid.Column=" 4" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="0" Margin="0">
-            <Label Text="Score: 99999" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ScoreLabel"/>
-        </Frame>
-        <ScrollView Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
-        <Label Text="You picked:" Grid.Column="1" Grid.Row="2" TextColor="Black"/>
-        <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Background="#8B577A">
+            <Label Text="{ Binding Score, StringFormat='Score: {0}' }" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ScoreLabel"/>
+        </Frame>-->
+        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+        <ScrollView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Orientation="Horizontal" BackgroundColor="Black" x:Name="Scroll">
+            <!--TODO: ADD TEMPLATE-->
+        </ScrollView>
+        <Label Text="You picked:" Grid.Column="1" Grid.Row="3" TextColor="Black"/>
+        <Grid Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Background="#8B577A">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -47,6 +61,6 @@
             <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton"/>
             <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton"/>
         </Grid>
-        <Button Text="Submit" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
+        <Button Text="Submit" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
     </Grid>
 </ContentPage>
