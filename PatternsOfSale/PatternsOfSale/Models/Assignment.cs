@@ -20,17 +20,52 @@ namespace PatternsOfSale.Models
             dishAssignment = new List<ItemInterface>();
         }
 
-        // TO DO add random dishes
-        // THIS IS TEMPORARY FOR TESTING
+        /// <summary>
+        /// The method populates the dishAssignment field with random Menu Items, that a customer will order. The selection is done
+        /// dynamically based on the classes that currently inherit the Order class.  
+        /// </summary>
+        /// <param name="numOfDishes"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         public void addDishes(int numOfDishes)
         {
-            Order beerOrder = new BeerFactory();
-            ItemInterface beerItem = beerOrder.createMenuItem();
-            this.dishAssignment.Add(beerItem);
+            // Clean the dishAssignment list if the method is accidentally called more than once
+            this.dishAssignment.Clear();
+            // Make sure that input num of dishes to be ordered is from 1 to 10
+            if (numOfDishes > 10 || numOfDishes <= 0)
+            {
+                numOfDishes = 5;
+            }
+            List<Type> listOfDishes = GetSubclasses();
+            int listDishesCount = listOfDishes.Count; // Number of items avaliable to be ordered
+            // Check that the list got properly populated
+            if (listDishesCount == 0)
+            {
+                // Make PlaceHolder assignment
+                Order beerOrder = new BeerFactory();
+                ItemInterface beerItem = beerOrder.createMenuItem();
+                this.dishAssignment.Add(beerItem);
+                throw new InvalidOperationException("No subclasses found.");
+            }
+
+            Random random = new Random();
+            for (int i = 0; i < numOfDishes; i++)
+            {
+                // Choose a random dish to be ordered by customer
+                // Max number (listDishesCount) is exclusive, so the random number selected corresponds to an index in listOfDishes
+                int randomDishIndex = random.Next(0, listDishesCount);
+                Type randomType = listOfDishes[randomDishIndex];
+                // Create instance of a Item Factory that was randomly chosen
+                Order? newOrderFactory = Activator.CreateInstance(randomType) as Order;
+                if (newOrderFactory != null)
+                {
+                    ItemInterface newItem = newOrderFactory.createMenuItem();
+                    this.dishAssignment.Add(newItem);
+                } 
+            }
         }
 
         /// <summary>
-        /// The Player selection from dishPickUpStation get compared to the assignment found dishAssignment.
+        /// The Player selection from dishPickUpStation gets compared to the assignment found dishAssignment.
         /// </summary>
         /// <param name="dishAssignment"> A List of Menu Items picked by user</param>
         /// <returns>Double. A sum of points of correctly chosen dishes minus points of incorrectly choosen dishes</returns>
@@ -69,13 +104,13 @@ namespace PatternsOfSale.Models
         /// <summary>
         /// Method programmatically compiles a list of all child classes of Order class and returns it
         /// </summary>
-        /// <param name="parent"> Parent class</param>
-        /// <returns>List of child classes</returns>
-        public static List<Type> GetSubclasses(Type parent)
+        /// <returns>List of child classes in format Type</returns>
+        public static List<Type> GetSubclasses()
         {
-            Assembly assembly = Assembly.GetAssembly(parent);
+            Type parentClass = typeof(Order);
+            Assembly assembly = Assembly.GetAssembly(parentClass);
             return assembly.GetTypes()
-                           .Where(type => type.IsSubclassOf(parent))
+                           .Where(type => type.IsSubclassOf(parentClass))
                            .ToList();
         }
     }
