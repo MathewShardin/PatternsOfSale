@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace PatternsOfSale.ViewModels
 {
-    public abstract class ViewModel : ObservableObject
+    public abstract partial class ViewModel : ObservableObject
     {
         public GameManager GameManager { get; private set; }
 
-        protected ViewModel(GameManager gameManager)
+        public ViewModel(GameManager gameManager)
         {
             this.GameManager = gameManager;
         }

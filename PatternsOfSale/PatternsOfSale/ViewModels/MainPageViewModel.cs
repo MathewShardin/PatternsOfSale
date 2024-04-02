@@ -20,7 +20,7 @@ namespace PatternsOfSale.ViewModels
 
         [ObservableProperty]
         private string _pickedItems;
-        public MainPageViewModel(/*GameManager gameManager*/) /*: base(gameManager)*/
+        public MainPageViewModel(GameManager gameManager) : base(gameManager)
         {
             this._score = 0;
             this._time = DateTime.Now;

@@ -18,7 +18,7 @@ namespace PatternsOfSale.Models
         {
             dishPickUpStation = new List<ItemInterface>();
             lastUnixTime = 0;
-            currentCustomer = null;
+            currentCustomer = new EasyCustomer(new Assignment());
             score = 0;
         }
 
