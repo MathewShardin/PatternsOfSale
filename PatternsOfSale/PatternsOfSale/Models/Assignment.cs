@@ -20,11 +20,13 @@ namespace PatternsOfSale.Models
             dishAssignment = new List<ItemInterface>();
         }
 
+        // TO DO add random dishes
+        // THIS IS TEMPORARY FOR TESTING
         public void addDishes(int numOfDishes)
         {
-            // TO DO add random dishes
-            //Order beerOrder = new BeerFactory();
-            //ItemInterface beerItem = beerOrder.createMenuItem();
+            Order beerOrder = new BeerFactory();
+            ItemInterface beerItem = beerOrder.createMenuItem();
+            this.dishAssignment.Add(beerItem);
         }
 
         /// <summary>
