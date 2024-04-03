@@ -24,14 +24,19 @@ namespace PatternsOfSale.ViewModels
         private Assignment? _assignment;
 
         [ObservableProperty]
+        private ItemInterface _item;
+
+        [ObservableProperty]
         private List<ItemInterface> _pickedItems;
         public MainPageViewModel(GameManager gameManager) : base(gameManager)
         {
-            this.Score = 0;
-            this.Time = 100;
-            this.Assignment = null;
-            this.PickedItems = new List<ItemInterface> { };
-            this.TotalTime = 2000;
+            Score = 0;
+            Time = 100;
+            Assignment = new Assignment();
+            PickedItems = new List<ItemInterface> { };
+            TotalTime = 2000;
+            Assignment.AddDishes(4);
+            Item = new PastaItem();
         }
 
         [RelayCommand]
@@ -40,6 +45,7 @@ namespace PatternsOfSale.ViewModels
             GameManager.StartGame();
             Score = GameManager.Kitchen.Score;
             Assignment = GameManager.Kitchen.CurrentCustomer.assignment;
+            Time += 1;
         }
 
         [RelayCommand]
