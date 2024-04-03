@@ -19,23 +19,9 @@ namespace PatternsOfSale.Models
         public override double CheckAssignment(List<ItemInterface> input, long time)
         {
             double finalScore = 0;
-            double scoreMultiplier = time;
+            double scoreMultiplier = getScoreMultiplier(time);
             double points = assignment.CheckAssCompletion(input);
 
-            // is time is less than 3 seconds, score is multiplied by 1.5
-            if (time < GetGoodThreshold())
-            {
-                scoreMultiplier = 1.5;
-            }
-            // does the user need longer than 6 seconds to complete the order, the score is halved
-            else if (time > GetBadThreshold())
-            {
-                scoreMultiplier = 0.5;
-            }
-            else
-            {
-                scoreMultiplier = 1;
-            }
             finalScore = points * scoreMultiplier;
 
             return finalScore;
