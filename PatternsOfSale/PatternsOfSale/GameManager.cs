@@ -11,9 +11,10 @@ namespace PatternsOfSale
 {
     public class GameManager : TimerInterface
     {
-        public long CurrentTime { get; private set; }
-        public DateTime TimePlayed { get; private set; }
-        public long TimeSinceLastAssignment { get; private set; }
+        public long TimeSinceLastOrder { get; private set; }
+        public long LastOrderTimeStamp { get; private set; }
+        public long TimePlayed { get; private set; }
+        public long GameStartTimeStamp {  get; private set; }
         public long LastUnixTime { get; private set; }
         public PlayerKitchen Kitchen { get; private set; }
         public bool isGameRunning { get; private set; }
@@ -21,32 +22,39 @@ namespace PatternsOfSale
 
         public GameManager() {
             this.Kitchen = new PlayerKitchen();
-            this.CurrentTime = 0;
-            this.TimePlayed = DateTime.Now;
+            this.TimeSinceLastOrder = 0;
+            this.TimePlayed = 0;
+            this.GameStartTimeStamp = 0;
+            this.LastUnixTime = 0;
+            this.LastOrderTimeStamp = 0;
             this.isGameRunning = false;
         }
 
         public void UpdateTime(long timestamp)
         {
-            //
-            //TimePlayed -> time since game was started
+            if (this.LastUnixTime == 0)
+            {
+                this.LastUnixTime = timestamp;
+            }
 
-            //CUrrent time -> time since last order
-            //get the time since last order
+            if (this.LastOrderTimeStamp == 0)
+            {
+                this.LastOrderTimeStamp = timestamp;
+            }
+            this.TimeSinceLastOrder = timestamp - this.LastOrderTimeStamp;
 
-            //every second gets current time in UNIX format
-            //1 time since gamne started 
-            //2 time since last order
-            //1-> increase the time played
+            if (this.GameStartTimeStamp == 0)
+            {
+                this.GameStartTimeStamp = timestamp;
+            }
+            this.TimePlayed = timestamp - this.GameStartTimeStamp;
 
-
-            //2 -> time needed to make the order
-            this.TimeSinceLastAssignment = this.LastUnixTime - timestamp;
-
+            this.LastUnixTime = timestamp;
         }
 
         public void StartGame()
         {
+            this.GameStartTimeStamp = LastUnixTime;
             GameTimer gameTimer = new GameTimer(); // REFERS TO SINGELTON
             // Reset Player
             PlayerKitchen newplayerKitchen = new PlayerKitchen();
@@ -54,7 +62,7 @@ namespace PatternsOfSale
             this.Kitchen = newplayerKitchen;
             // Change game status
             this.isGameRunning = true;
-            this.Kitchen.NewGameRound(GetRandomCustomer(), CurrentTime);
+            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
         }
 
         public void StopGame()
@@ -69,8 +77,11 @@ namespace PatternsOfSale
         {
             this.Kitchen.Submit();
             // UPDATE GUI HERE
-            this.Kitchen.NewGameRound(GetRandomCustomer(), CurrentTime);
 
+            // Give new Assignment
+            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
+            this.TimeSinceLastOrder = 0;
+            this.LastOrderTimeStamp = this.LastUnixTime;
         }
 
         public Customer GetRandomCustomer()

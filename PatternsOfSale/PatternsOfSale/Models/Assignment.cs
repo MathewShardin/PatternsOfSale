@@ -20,6 +20,8 @@ namespace PatternsOfSale.Models
             dishAssignment = new List<ItemInterface>();
         }
 
+        public List<ItemInterface> DishAssignment { get; private set; }
+
         /// <summary>
         /// The method populates the dishAssignment field with random Menu Items, that a customer will order. The selection is done
         /// dynamically based on the classes that currently inherit the Order class.  
