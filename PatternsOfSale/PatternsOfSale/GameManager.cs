@@ -51,7 +51,7 @@ namespace PatternsOfSale
 
             this.LastUnixTime = timestamp;
 
-            //Check if layer
+        
         }
 
         public void StartGame()
@@ -64,7 +64,7 @@ namespace PatternsOfSale
             this.Kitchen = newplayerKitchen;
             // Change game status
             this.isGameRunning = true;
-            this.Kitchen.NewGameRound(GetRandomCustomer(), LastUnixTime);
+            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
         }
 
         public void StopGame()
@@ -81,7 +81,7 @@ namespace PatternsOfSale
             // UPDATE GUI HERE
 
             // Give new Assignment
-            this.Kitchen.NewGameRound(GetRandomCustomer(), LastUnixTime);
+            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
             this.TimeSinceLastOrder = 0;
             this.LastOrderTimeStamp = this.LastUnixTime;
         }
