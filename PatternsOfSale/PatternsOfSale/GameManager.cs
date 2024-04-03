@@ -19,6 +19,7 @@ namespace PatternsOfSale
         public PlayerKitchen Kitchen { get; private set; }
         public bool isGameRunning { get; private set; }
         const int MAXNUMBEROFDISHES = 10;
+        const long TIMEDEADLINE = 10;
 
         public GameManager() {
             this.Kitchen = new PlayerKitchen();
@@ -51,7 +52,13 @@ namespace PatternsOfSale
 
             this.LastUnixTime = timestamp;
 
-            //after 10 sec sinds order received -> submit()
+            // after 10 sec sinds order received -> submit()
+            // if the player has not submitted the order in time (10sec), submit it automatically
+            // and new order is given
+            if(this.TimeSinceLastOrder >= TIMEDEADLINE)
+            {
+                Submit();
+            }
         
         }
 
