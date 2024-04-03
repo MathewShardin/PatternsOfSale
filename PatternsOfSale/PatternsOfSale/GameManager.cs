@@ -51,6 +51,7 @@ namespace PatternsOfSale
 
             this.LastUnixTime = timestamp;
 
+            //after 10 sec sinds order received -> submit()
         
         }
 
@@ -64,7 +65,7 @@ namespace PatternsOfSale
             this.Kitchen = newplayerKitchen;
             // Change game status
             this.isGameRunning = true;
-            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
+            this.Kitchen.NewGameRound(GetRandomCustomer(), LastUnixTime);
         }
 
         public void StopGame()
@@ -81,7 +82,7 @@ namespace PatternsOfSale
             // UPDATE GUI HERE
 
             // Give new Assignment
-            this.Kitchen.NewGameRound(GetRandomCustomer(), TimeSinceLastOrder);
+            this.Kitchen.NewGameRound(GetRandomCustomer(), LastUnixTime);
             this.TimeSinceLastOrder = 0;
             this.LastOrderTimeStamp = this.LastUnixTime;
         }
