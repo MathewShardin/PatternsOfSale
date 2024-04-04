@@ -18,8 +18,8 @@ namespace PatternsOfSale
         public long LastUnixTime { get; private set; }
         public PlayerKitchen Kitchen { get; set; }
         public bool isGameRunning { get; private set; }
-        const int MAXNUMBEROFDISHES = 5;
-        public const long TIMEDEADLINE = 10;
+        const int MAXNUMBEROFDISHES = 10;
+        public const long TIMEDEADLINE = 12;
         private GameTimer Timer;
 
         public GameManager() {
