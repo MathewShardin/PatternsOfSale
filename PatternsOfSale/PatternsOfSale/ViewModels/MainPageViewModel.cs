@@ -56,8 +56,8 @@ namespace PatternsOfSale.ViewModels
         [RelayCommand]
         private async Task StartGame()
         {
-            GameManager.StartGame();
             Timer.AddSubscriber(this);
+            GameManager.StartGame();
             UpdateValues();
             Time += 1;
             AddAssignmentsToList();
