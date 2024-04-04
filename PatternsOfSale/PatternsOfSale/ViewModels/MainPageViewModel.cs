@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace PatternsOfSale.ViewModels
 {
-    public partial class MainPageViewModel : ViewModel
+    public partial class MainPageViewModel : ViewModel, TimerInterface
     {
         [ObservableProperty]
         private double _score;
@@ -33,28 +33,40 @@ namespace PatternsOfSale.ViewModels
         [ObservableProperty]
         private List<ItemInterface> _pickedItems;
 
+        private GameTimer Timer;
+
+        private GameManager GameManager;
+
         //[ObservableProperty]
         //private ObservableCollection<String>
 
-        public MainPageViewModel(GameManager gameManager) : base(gameManager)
+        public MainPageViewModel(GameManager gameManager, GameTimer timer)
         {
             Items = new ObservableCollection<string>();
             PickedItemsString = new ObservableCollection<string>();
             Score = 0;
-            Time = 100;
+            Time = 0;
             Assignment = new Assignment();
             PickedItems = new List<ItemInterface> { };
-            TotalTime = 2000;
+            TotalTime = 0;
+            Timer = timer;
+            GameManager = gameManager;
         }
 
         [RelayCommand]
         private async Task StartGame()
         {
             GameManager.StartGame();
-            Score = GameManager.Kitchen.Score;
-            Assignment = GameManager.Kitchen.CurrentCustomer.assignment;
+            Timer.AddSubscriber(this);
+            UpdateValues();
             Time += 1;
             AddAssignmentsToList();
+        }
+
+        private void UpdateValues()
+        {
+            Score = GameManager.Kitchen.Score;
+            Assignment = GameManager.Kitchen.CurrentCustomer.assignment;
         }
 
         [RelayCommand]
@@ -67,17 +79,40 @@ namespace PatternsOfSale.ViewModels
         [RelayCommand]
         private async Task Submit()
         {
+            GameManager.Kitchen.DishPickUpStation = PickedItems;
+            ClearPickedItemList();
             GameManager.Submit();
-            Score = GameManager.Kitchen.Score;
+            UpdateValues();
+            AddAssignmentsToList();
+            
         }
 
         [RelayCommand]
-        private async Task OrderButton(object sender)
+        private async Task BurgerButton()
         {
-            //if(sender)
-            //{
+            PickedItems.Add(new BurgerItem());
+            PickedItemsString.Add("Burger");
+        }
 
-            //}
+        [RelayCommand]
+        private async Task PastaButton()
+        {
+            PickedItems.Add(new PastaItem());
+            PickedItemsString.Add("Pasta");
+        }
+
+        [RelayCommand]
+        private async Task BeerButton()
+        {
+            PickedItems.Add(new BeerItem());
+            PickedItemsString.Add("Beer");
+        }
+
+        [RelayCommand]
+        private async Task ColaButton()
+        {
+            PickedItems.Add(new ColaItem());
+            PickedItemsString.Add("Cola");
         }
 
         private void AddAssignmentsToList()
@@ -85,13 +120,20 @@ namespace PatternsOfSale.ViewModels
             Items.Clear();
             foreach (ItemInterface item in Assignment.DishAssignment)
             {
-                Items.Add(item.GetType().Name);
+                String cleanName = item.GetType().Name.Substring(0, item.GetType().Name.Length - 4);
+                Items.Add(cleanName);
             }
         }
 
         private void ClearPickedItemList()
         {
             PickedItemsString.Clear();
+        }
+
+        public void UpdateTime(long timestamp)
+        {
+            Time = GameManager.TimeSinceLastOrder;
+            TotalTime = GameManager.TimePlayed;
         }
     }
 }

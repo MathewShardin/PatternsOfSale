@@ -40,19 +40,22 @@
         <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
         <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Items}" HeightRequest="100">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Items}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0"/>
+                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Label Text="You picked:" Grid.Column="1" Grid.Row="3" TextColor="Black"/>
-        <CollectionView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" BackgroundColor="Black" ItemsLayout="HorizontalList" x:Name="PickedItemsView" ItemsSource="{Binding PickedItemsString}">
+        <CollectionView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="PickedItemsView" ItemsSource="{Binding PickedItemsString}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding PickedItemsString}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0"/>
+                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -65,11 +68,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="Burger" Grid.Column="0" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BurgerButton"/>
-            <Button Text="Pasta" Grid.Column="1" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="PastaButton"/>
-            <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton"/>
-            <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton"/>
+            <Button Text="Burger" Grid.Column="0" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BurgerButton" Command="{Binding BurgerButtonCommand}"/>
+            <Button Text="Pasta" Grid.Column="1" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="PastaButton" Command="{Binding PastaButtonCommand}"/>
+            <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton" Command="{Binding ColaButtonCommand}"/>
+            <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton" Command="{Binding BeerButtonCommand}"/>
         </Grid>
-        <Button Text="Submit" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
+        <Button Text="Submit" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" Command="{Binding SubmitCommand}"/>
     </Grid>
 </ContentPage>

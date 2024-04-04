@@ -9,11 +9,10 @@ namespace PatternsOfSale.ViewModels
 {
     public abstract partial class ViewModel : ObservableObject
     {
-        public GameManager GameManager { get; private set; }
+        
 
-        public ViewModel(GameManager gameManager)
+        public ViewModel()
         {
-            this.GameManager = gameManager;
         }
     }
 }
