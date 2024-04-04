@@ -28,6 +28,7 @@ namespace PatternsOfSale.Models
                 {
                     while (manager.isGameRunning == true)
                     {
+                        await Task.Delay(TIMESPEED);
                         this.SendTick();
                     }
 
@@ -49,21 +50,10 @@ namespace PatternsOfSale.Models
 
         public void SendTick()
         {
-            lock (lockObject)
+            foreach (TimerInterface subscriber in TimerInterfaces)
             {
-                if (!isRunning)
-                {
-                    isRunning = true;
-
-                    foreach (TimerInterface subscriber in TimerInterfaces)
-                    {
-                        long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                        subscriber.UpdateTime(unixTimestamp);
-                    }
-
-                    // Release the lock after one second
-                    Timer timer = new Timer(state => { isRunning = false; }, null, TIMESPEED, Timeout.Infinite);
-                }
+                long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                subscriber.UpdateTime(unixTimestamp);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace PatternsOfSale.Models
         public PlayerKitchen()
         {
             DishPickUpStation = new List<ItemInterface>();
-            LastUnixTime = 0;
+            LastUnixTime = -1;
             Score = 0;
         }
 
@@ -83,6 +83,10 @@ namespace PatternsOfSale.Models
 
         public void UpdateTime(long timestamp)
         {
+            if (LastUnixTime == -1)
+            {
+                LastUnixTime = timestamp;
+            }
             this.PassedSinceLastAssignment = timestamp - this.LastUnixTime;
             this.LastUnixTime = timestamp;
         }
@@ -91,7 +95,7 @@ namespace PatternsOfSale.Models
         {
             this.LastUnixTime = timeStamp;
             this.CurrentCustomer = cust;
-            this.DishPickUpStation.Clear();
+            //this.DishPickUpStation.Clear();
         }
 
 

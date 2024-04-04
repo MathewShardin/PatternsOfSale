@@ -60,10 +60,7 @@ namespace PatternsOfSale
             this.GameStartTimeStamp = LastUnixTime;
             this.TimeSinceLastOrder = -1;
             this.LastOrderTimeStamp = -1;
-            // Reset Player
-            //PlayerKitchen newplayerKitchen = new PlayerKitchen();
-            //Timer.AddSubscriber(newplayerKitchen);
-            //this.Kitchen = newplayerKitchen;
+
             // Change game status
             this.isGameRunning = true;
             this.Kitchen.NewGameRound(GetRandomCustomer(), LastUnixTime);
@@ -73,7 +70,6 @@ namespace PatternsOfSale
         {
             // Change game status
             this.isGameRunning = false;
-            //Timer.RemoveSubscriber(this.Kitchen);
         }
 
         public void Submit()
