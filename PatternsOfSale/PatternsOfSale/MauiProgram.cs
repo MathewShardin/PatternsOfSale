@@ -23,8 +23,8 @@ namespace PatternsOfSale
                 .Services
                 .AddViewModels()
                 .AddViews()
-                .AddSingleton<GameManager>()
-                .AddSingleton<GameTimer>();
+                .AddSingleton<GameTimer>()
+                .AddSingleton<GameManager>();
 
 
 #if WINDOWS
@@ -55,28 +55,11 @@ namespace PatternsOfSale
             builder.Logging.AddDebug();
 #endif
 
-            var app = builder.Build();
-            GameTimer timer = app.Services.GetRequiredService<GameTimer>();
-            GameManager manager = app.Services.GetService<GameManager>();
+            //GameTimer timer = app.Services.GetRequiredService<GameTimer>();
+            //GameManager manager = app.Services.GetService<GameManager>();
 
-            timer.AddSubscriber(manager);
 
-            // Launch the timer forever on a seprate thread
-            Thread threadTimer = new Thread(() =>
-            {
-                while (true)
-                {
-                    while (manager.isGameRunning == true)
-                    {
-                        timer.SendTick();
-                    }
-
-                }
-            });
-            threadTimer.IsBackground = true;
-            threadTimer.Start();
-            //return builder.Build();
-            return app;
+            return builder.Build();
         }
     }
 }

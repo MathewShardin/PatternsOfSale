@@ -14,10 +14,26 @@ namespace PatternsOfSale.Models
         private bool isRunning = false;
         private const int TIMESPEED = 1000; //Speed of one Game Tick in milliseconds
 
-
-        public GameTimer() 
+        public GameTimer(GameManager manager) 
         {
             this.TimerInterfaces = new List<TimerInterface>();
+
+            this.AddSubscriber(manager);
+
+            // Launch the timer forever on a seprate thread
+            Thread threadTimer = new Thread(() =>
+            {
+                while (true)
+                {
+                    while (manager.isGameRunning == true)
+                    {
+                        this.SendTick();
+                    }
+
+                }
+            });
+            threadTimer.IsBackground = true;
+            threadTimer.Start();
         }
 
         public void AddSubscriber(TimerInterface subscriber)
@@ -34,7 +50,7 @@ namespace PatternsOfSale.Models
         {
             lock (lockObject)
             {
-                if (isRunning)
+                if (!isRunning)
                 {
                     isRunning = true;
 

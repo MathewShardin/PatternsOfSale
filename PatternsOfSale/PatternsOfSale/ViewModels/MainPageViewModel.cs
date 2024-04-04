@@ -56,10 +56,14 @@ namespace PatternsOfSale.ViewModels
         [RelayCommand]
         private async Task StartGame()
         {
+            // Reset player
+            PlayerKitchen newplayerKitchen = new PlayerKitchen();
+            Timer.AddSubscriber(newplayerKitchen);
+            GameManager.Kitchen = newplayerKitchen;
+
             Timer.AddSubscriber(this);
             GameManager.StartGame();
             UpdateValues();
-            Time += 1;
             AddAssignmentsToList();
         }
 
@@ -73,6 +77,7 @@ namespace PatternsOfSale.ViewModels
         private async Task StopGame()
         {
             GameManager.StopGame();
+            Timer.RemoveSubscriber(GameManager.Kitchen);
 
         }
 
