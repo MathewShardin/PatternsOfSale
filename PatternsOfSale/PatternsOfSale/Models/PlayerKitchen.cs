@@ -9,10 +9,25 @@ namespace PatternsOfSale.Models
 {
     public class PlayerKitchen : TimerInterface
     {
+        /// <summary>
+        /// Gets or sets the list of items in the DishPickUpStation
+        /// </summary>
         public List<ItemInterface> DishPickUpStation { get; set; }
-        public long LastUnixTime { get; set; } // TIme stamp of last Ass. placed
+        /// <summary>
+        /// Time stamp of last assignment placed
+        /// </summary>
+        public long LastUnixTime { get; set; } 
+        /// <summary>
+        /// Time passed since last assignment
+        /// </summary>
         public long PassedSinceLastAssignment { get; set; }
+        /// <summary>
+        /// Current customer assigned to the player, can be null
+        /// </summary>
         public Customer? CurrentCustomer { get; set; }
+        /// <summary>
+        /// Score of the player
+        /// </summary>
         public double Score { get; private set; }
 
         public PlayerKitchen()
@@ -80,7 +95,10 @@ namespace PatternsOfSale.Models
             }
         }
        
-
+        /// <summary>
+        /// Implementation of the TimerInterface. Updates the time passed since last assignment
+        /// </summary>
+        /// <param name="timestamp"></param>
         public void UpdateTime(long timestamp)
         {
             if (LastUnixTime == -1)

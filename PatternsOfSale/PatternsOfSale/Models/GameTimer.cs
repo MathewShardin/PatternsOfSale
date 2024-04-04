@@ -14,6 +14,10 @@ namespace PatternsOfSale.Models
         private bool isRunning = false;
         private const int TIMESPEED = 1000; //Speed of one Game Tick in milliseconds
 
+        /// <summary>
+        /// Constructor for the GameTimer, starts a new thread that sends the current time to all subscribers
+        /// </summary>
+        /// <param name="manager"></param>
         public GameTimer(GameManager manager) 
         {
             this.TimerInterfaces = new List<TimerInterface>();
@@ -47,7 +51,9 @@ namespace PatternsOfSale.Models
         {
             TimerInterfaces.Remove(subscriber);
         }
-
+        /// <summary>
+        /// Iterate through all subscribers and send the current time
+        /// </summary>
         public void SendTick()
         {
             foreach (TimerInterface subscriber in TimerInterfaces)

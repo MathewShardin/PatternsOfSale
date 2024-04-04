@@ -8,6 +8,10 @@ namespace PatternsOfSale.Models
 {
     public interface TimerInterface
     {
+        /// <summary>
+        /// Implements the update call for all subscribers
+        /// </summary>
+        /// <param name="timestamp"></param>
         public void UpdateTime(long timestamp);
     }
 }

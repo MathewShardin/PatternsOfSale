@@ -15,7 +15,12 @@ namespace PatternsOfSale.Models
             newAss.AddDishes(numOfDishes);
             this.assignment = newAss;
         }
-
+        /// <summary>
+        /// Methods takes in a list of items and a time and returns the score of the assignment + time multiplier if assignment is completed in time
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public override double CheckAssignment(List<ItemInterface> input, long time)
         {
             double finalScore = 0;

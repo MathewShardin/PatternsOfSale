@@ -8,7 +8,7 @@ namespace PatternsOfSale.Models
 {
     public class KarenCustomer : Customer
     {
-        const double CHANCE_TO_CANCEL_ORDER = 25;
+        const double CHANCE_TO_CANCEL_ORDER = 25; // 25% chance to cancel order
 
         public KarenCustomer(int numOfDishes) : base(numOfDishes)
         {
@@ -21,6 +21,12 @@ namespace PatternsOfSale.Models
         {
             return CHANCE_TO_CANCEL_ORDER;
         }
+        /// <summary>
+        /// Implementation of CheckAssignment for KarenCustomer. KarenCustomer has a 25% chance to cancel the order randomly
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         
         public override double CheckAssignment(List<ItemInterface> input, long time)
         {
@@ -39,6 +45,10 @@ namespace PatternsOfSale.Models
             return finalScore;
         }
 
+        /// <summary>
+        /// You know the drill. Karen has a 25% chance to cancel the order
+        /// </summary>
+        /// <returns>Random chance to cancel the order</returns>
         public bool ShouldCancelOrder()
         {
             Random random = new Random();
