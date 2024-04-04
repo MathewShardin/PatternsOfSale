@@ -26,36 +26,36 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/> 
         </Grid.ColumnDefinitions>
-        <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StartButton" Command="{Binding StartGameCommand}"/>
-        <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StopButton" Command="{Binding StopGameCommand}"/>
+        <Button Text="Start" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StartButton" Command="{Binding StartGameCommand}" FontSize="Large"/>
+        <Button Text="Stop" Grid.Column="2" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" x:Name="StopButton" Command="{Binding StopGameCommand}" FontSize="Large"/>
         <Grid Grid.Column="3" Grid.Row="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="{ Binding Time, StringFormat='Timer: {0}' }" Grid.Column="0" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0"/>
-            <Button Text="{ Binding TotalTime, StringFormat='Time played: {0}' }" Grid.Column="1" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0"/>
+            <Button Text="{ Binding Time, StringFormat='Timer: {0}' }" Grid.Column="0" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" FontSize="Large"/>
+            <Button Text="{ Binding TotalTime, StringFormat='Time: {0}' }" Grid.Column="1" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0" FontSize="Large"/>
         </Grid>
-        <Button Text="{ Binding Score, StringFormat='Score: {0}' }" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
-        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+        <Button Text="{ Binding Score, StringFormat='Score: {0}' }" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" FontSize="Large"/>
+        <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black" FontSize="Medium"/>
         <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Items}" HeightRequest="100">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Label Text="You picked:" Grid.Column="1" Grid.Row="3" TextColor="Black"/>
+        <Label Text="You picked:" Grid.Column="1" Grid.Row="3" TextColor="Black" FontSize="Medium"/>
         <CollectionView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="PickedItemsView" ItemsSource="{Binding PickedItemsString}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -68,11 +68,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="Burger" Grid.Column="0" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BurgerButton" Command="{Binding BurgerButtonCommand}"/>
-            <Button Text="Pasta" Grid.Column="1" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="PastaButton" Command="{Binding PastaButtonCommand}"/>
-            <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton" Command="{Binding ColaButtonCommand}"/>
-            <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton" Command="{Binding BeerButtonCommand}"/>
+            <Button Text="Burger" Grid.Column="0" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BurgerButton" Command="{Binding BurgerButtonCommand}" FontSize="Large"/>
+            <Button Text="Pasta" Grid.Column="1" Grid.Row="0" BackgroundColor="#9932CC" CornerRadius="0" x:Name="PastaButton" Command="{Binding PastaButtonCommand}" FontSize="Large"/>
+            <Button Text="Cola" Grid.Column="0" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="ColaButton" Command="{Binding ColaButtonCommand}" FontSize="Large"/>
+            <Button Text="Beer" Grid.Column="1" Grid.Row="1" BackgroundColor="#9932CC" CornerRadius="0" x:Name="BeerButton" Command="{Binding BeerButtonCommand}" FontSize="Large"/>
         </Grid>
-        <Button Text="Submit" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" Command="{Binding SubmitCommand}"/>
+        <Button Text="Submit" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0" Command="{Binding SubmitCommand}" FontSize="Large"/>
     </Grid>
 </ContentPage>
