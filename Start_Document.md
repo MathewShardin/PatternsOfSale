@@ -4,12 +4,13 @@ Assignment carried out by 3rd year NHL Stenden students:
 * Mathew Shardin
 * Rob Veldman
 ## Introduction
-The team is set out to create a small video game, where a player takes control of a cafe kitchen. The idea is loosely inspired by Papa's Kitechen game series. Patterns of Sale is a game that allows one to learn to use a touch screen/mouse, imporve hand-eye coordination and reaction times. The game is based around a player cooking (choosing) the correct dishes to satisfy a customer's order
+The team is set out to create a small video game, where a player takes control of a cafe kitchen. The idea is loosely inspired by Papa's Kitchen game series. Patterns of Sale is a game that allows one to learn to use a touch screen/mouse, improve hand-eye coordination and reaction times as well as practice fine mouse to improve aim in shooter games. 
+The game is based around a player cooking (choosing) the correct dishes to satisfy a customer's order.
 ## Application description
 ##### Main game loop:
-1. Recieve an order (assignment) from one of the customers
-2. Choose the correct dishes from the dish catalogue to satisfy the order and send them in to the customer
-3. Recieve a score based on the order completed
+1. Recieve an order (assignment) from one of the customers. The tickets with dishes appear on top.
+2. Choose the correct dishes from the dish catalogue closing each ticket to satisfy the order. Don't forget to send it in to the customer!
+3. Recieve a score based on the order completed. Faster cooks get more points, while snails can actually loose them if an order isn't sent in time (10 seconds)!
 4. Repeat steps 1-3
 5. ??????
 6. PROFIT!
@@ -18,14 +19,20 @@ The team is set out to create a small video game, where a player takes control o
 * Different types of customers that asses the player's orders differently
 * High-score based game. Players get score per each order fullfill
 * GUI to interact with the game
+* High paced gameplay!
 
 ##### Additional information
 Customer types:
 * Normal Customer - evaluates the order by combining the score price of each correctly picked dish and subracting the score price of incorrectly added dishes
 * Karen Customer - works the same way as normal customer, but has a 50% chance to get mad and invalidate the whole order (grant 0 score points)
 
+Additional Rules:
+* Score Multipliers: the faster an order is sent in, the more points are granted. The multiplier range is times 0.5 - 2.0 of the normal score. The time threshhold is 3 seconds.
+* Customers Have Limited Patience: if a player cannot send an order in within 10 seconds, the order is cancelled and points are lost.
+* Maxiumum Number of Tickets: 10;
+
 Development Language: C#
-GUI Framework: .NET MAUI
+GUI Framework: .NET MAUI using MVVM
 
 
 ## Moscow Analysis

@@ -146,7 +146,7 @@ namespace PatternsOfSale.ViewModels
 
         public void UpdateTime(long timestamp)
         {
-            Time = GameManager.TimeSinceLastOrder;
+            Time = GameManager.TIMEDEADLINE - GameManager.TimeSinceLastOrder;
             TotalTime = GameManager.TimePlayed;
 
             // if the player has not submitted the order in time (10sec), submit it automatically
