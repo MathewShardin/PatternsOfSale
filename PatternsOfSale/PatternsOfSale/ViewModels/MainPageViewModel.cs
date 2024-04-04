@@ -132,6 +132,7 @@ namespace PatternsOfSale.ViewModels
         private void AddAssignmentsToList()
         {
             Items.Clear();
+            Task.Delay(100).Wait();     //delay due to .NET being too slow/fast
             foreach (ItemInterface item in Assignment.DishAssignment)
             {
                 String cleanName = item.GetType().Name.Substring(0, item.GetType().Name.Length - 4);
