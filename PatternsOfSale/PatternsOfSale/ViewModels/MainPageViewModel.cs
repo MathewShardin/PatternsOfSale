@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PatternsOfSale.Models;
+using System.Collections.ObjectModel;
 
 namespace PatternsOfSale.ViewModels
 {
@@ -24,19 +25,26 @@ namespace PatternsOfSale.ViewModels
         private Assignment? _assignment;
 
         [ObservableProperty]
-        private ItemInterface _item;
+        private ObservableCollection<String> _items;
 
         [ObservableProperty]
+        private ObservableCollection<String> _pickedItemsString;
+        
+        [ObservableProperty]
         private List<ItemInterface> _pickedItems;
+
+        //[ObservableProperty]
+        //private ObservableCollection<String>
+
         public MainPageViewModel(GameManager gameManager) : base(gameManager)
         {
+            Items = new ObservableCollection<string>();
+            PickedItemsString = new ObservableCollection<string>();
             Score = 0;
             Time = 100;
             Assignment = new Assignment();
             PickedItems = new List<ItemInterface> { };
             TotalTime = 2000;
-            Assignment.AddDishes(4);
-            Item = new PastaItem();
         }
 
         [RelayCommand]
@@ -46,6 +54,7 @@ namespace PatternsOfSale.ViewModels
             Score = GameManager.Kitchen.Score;
             Assignment = GameManager.Kitchen.CurrentCustomer.assignment;
             Time += 1;
+            AddAssignmentsToList();
         }
 
         [RelayCommand]
@@ -60,6 +69,21 @@ namespace PatternsOfSale.ViewModels
         {
             GameManager.Submit();
             Score = GameManager.Kitchen.Score;
+        }
+
+        private void AddAssignmentsToList()
+        {
+            Items.Clear();
+            foreach (ItemInterface item in Assignment.DishAssignment)
+            {
+                Items.Add(item.GetType().Name);
+            }
+            var yes = "";
+        }
+
+        private void ClearPickedItemList()
+        {
+            PickedItemsString.Clear();
         }
     }
 }

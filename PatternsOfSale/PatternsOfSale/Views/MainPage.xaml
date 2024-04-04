@@ -37,17 +37,11 @@
             <Button Text="{ Binding TotalTime, StringFormat='Time played: {0}' }" Grid.Column="1" Grid.Row="0" BackgroundColor="#8B577A" CornerRadius="0"/>
         </Grid>
         <Button Text="{ Binding Score, StringFormat='Score: {0}' }" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
-        <!--<Frame BackgroundColor="#8B577A" Grid.Column="3" Grid.Row="0" CornerRadius="0" Margin="0">
-            <Label Text="{ Binding Time, StringFormat='Time: {0}' }" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="TimeLabel"/>
-        </Frame>
-        <Frame BackgroundColor="#8B577A" Grid.Column=" 4" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="0" Margin="0">
-            <Label Text="{ Binding Score, StringFormat='Score: {0}' }" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ScoreLabel"/>
-        </Frame>-->
         <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
-        <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Assignment.DishAssignment}">
+        <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Assignment}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type model:ItemInterface}">
-                    <Grid BackgroundColor="Black">
+                    <Grid BackgroundColor="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>

@@ -13,14 +13,13 @@ namespace PatternsOfSale.Models
     /// </summary>
     public class Assignment
     {
-        private List<ItemInterface> dishAssignment;
+        public List<ItemInterface> DishAssignment { get; set; }
 
         public Assignment() 
         {
-            dishAssignment = new List<ItemInterface>();
+            DishAssignment = new List<ItemInterface>();
         }
 
-        public List<ItemInterface> DishAssignment { get; private set; }
 
         /// <summary>
         /// The method populates the dishAssignment field with random Menu Items, that a customer will order. The selection is done
@@ -31,7 +30,7 @@ namespace PatternsOfSale.Models
         public void AddDishes(int numOfDishes)
         {
             // Clean the dishAssignment list if the method is accidentally called more than once
-            this.dishAssignment.Clear();
+            this.DishAssignment.Clear();
 
             List<Type> listOfDishes = GetSubclasses();
             int listDishesCount = listOfDishes.Count; // Number of items avaliable to be ordered
@@ -41,7 +40,7 @@ namespace PatternsOfSale.Models
                 // Make PlaceHolder assignment
                 Order beerOrder = new BeerFactory();
                 ItemInterface beerItem = beerOrder.CreateMenuItem();
-                this.dishAssignment.Add(beerItem);
+                this.DishAssignment.Add(beerItem);
                 throw new InvalidOperationException("No subclasses found.");
             }
 
@@ -57,7 +56,7 @@ namespace PatternsOfSale.Models
                 if (newOrderFactory != null)
                 {
                     ItemInterface newItem = newOrderFactory.CreateMenuItem();
-                    this.dishAssignment.Add(newItem);
+                    this.DishAssignment.Add(newItem);
                 } 
             }
         }
@@ -70,7 +69,7 @@ namespace PatternsOfSale.Models
         public double CheckAssCompletion(List<ItemInterface> inputSelection)
         {
             double finalScore = 0;
-            List<ItemInterface> tempDishAssignment = dishAssignment;
+            List<ItemInterface> tempDishAssignment = DishAssignment;
 
             // Iterate through user dish selection and check if each item is present in the Assignment
             foreach (ItemInterface dish in inputSelection)

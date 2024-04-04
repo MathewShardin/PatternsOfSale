@@ -98,7 +98,7 @@ namespace PatternsOfSale
         {
             Random random = new Random();
             // Get random number of dishes a customer will order
-            int numOfDishes = random.Next(0, MAXNUMBEROFDISHES);
+            int numOfDishes = random.Next(1, MAXNUMBEROFDISHES);
 
             List<Type> listOfCustomers = GetSubclassesCustomer();
             int listCustomersCount = listOfCustomers.Count; // Number of customer types that can come to cafe
