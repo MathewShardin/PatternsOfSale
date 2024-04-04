@@ -20,8 +20,9 @@ namespace PatternsOfSale
         public bool isGameRunning { get; private set; }
         const int MAXNUMBEROFDISHES = 10;
         const long TIMEDEADLINE = 10;
+        private GameTimer Timer;
 
-        public GameManager() {
+        public GameManager(GameTimer timer) {
             this.Kitchen = new PlayerKitchen();
             this.TimeSinceLastOrder = 0;
             this.TimePlayed = 0;
@@ -29,6 +30,7 @@ namespace PatternsOfSale
             this.LastUnixTime = 0;
             this.LastOrderTimeStamp = 0;
             this.isGameRunning = false;
+            this.Timer = timer;
         }
 
         public void UpdateTime(long timestamp)
@@ -65,10 +67,9 @@ namespace PatternsOfSale
         public void StartGame()
         {
             this.GameStartTimeStamp = LastUnixTime;
-            GameTimer gameTimer = new GameTimer(); // REFERS TO SINGELTON
             // Reset Player
             PlayerKitchen newplayerKitchen = new PlayerKitchen();
-            gameTimer.AddSubscriber(newplayerKitchen);
+            Timer.AddSubscriber(newplayerKitchen);
             this.Kitchen = newplayerKitchen;
             // Change game status
             this.isGameRunning = true;
@@ -77,10 +78,9 @@ namespace PatternsOfSale
 
         public void StopGame()
         {
-            GameTimer gameTimer = new GameTimer(); // REFERS TO SINGELTON
             // Change game status
             this.isGameRunning = false;
-            gameTimer.RemoveSubscriber(this.Kitchen);
+            Timer.RemoveSubscriber(this.Kitchen);
         }
 
         public void Submit()
