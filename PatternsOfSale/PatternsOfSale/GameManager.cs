@@ -12,60 +12,54 @@ namespace PatternsOfSale
     public class GameManager : TimerInterface
     {
         public long TimeSinceLastOrder { get; private set; }
-        public long LastOrderTimeStamp { get; private set; }
+        public long LastOrderTimeStamp { get;  set; }
         public long TimePlayed { get; private set; }
-        public long GameStartTimeStamp {  get; private set; }
+        public long GameStartTimeStamp {  get;  set; }
         public long LastUnixTime { get; private set; }
         public PlayerKitchen Kitchen { get; set; }
         public bool isGameRunning { get; private set; }
         const int MAXNUMBEROFDISHES = 10;
-        const long TIMEDEADLINE = 10;
+        public const long TIMEDEADLINE = 10;
         private GameTimer Timer;
 
         public GameManager() {
             this.Kitchen = new PlayerKitchen();
             this.TimeSinceLastOrder = 0;
             this.TimePlayed = 0;
-            this.GameStartTimeStamp = 0;
-            this.LastUnixTime = 0;
-            this.LastOrderTimeStamp = 0;
+            this.GameStartTimeStamp = -1;
+            this.LastUnixTime = -1;
+            this.LastOrderTimeStamp = -1;
             this.isGameRunning = false;
         }
 
         public void UpdateTime(long timestamp)
         {
-            if (this.LastUnixTime == 0)
-            {
-                this.LastUnixTime = timestamp;
-            }
+            //if (this.LastUnixTime == -1)
+            //{
+            //    this.LastUnixTime = timestamp;
+            //}
+            this.LastUnixTime = timestamp;
 
-            if (this.LastOrderTimeStamp == 0)
+            if (this.LastOrderTimeStamp == -1)
             {
                 this.LastOrderTimeStamp = timestamp;
             }
             this.TimeSinceLastOrder = timestamp - this.LastOrderTimeStamp;
 
-            if (this.GameStartTimeStamp == 0)
+            if (this.GameStartTimeStamp == -1)
             {
                 this.GameStartTimeStamp = timestamp;
             }
             this.TimePlayed = timestamp - this.GameStartTimeStamp;
 
-            this.LastUnixTime = timestamp;
-
-            // after 10 sec sinds order received -> submit()
-            // if the player has not submitted the order in time (10sec), submit it automatically
-            // and new order is given
-            if(this.TimeSinceLastOrder >= TIMEDEADLINE)
-            {
-                Submit();
-            }
         
         }
 
         public void StartGame()
         {
             this.GameStartTimeStamp = LastUnixTime;
+            this.TimeSinceLastOrder = -1;
+            this.LastOrderTimeStamp = -1;
             // Reset Player
             //PlayerKitchen newplayerKitchen = new PlayerKitchen();
             //Timer.AddSubscriber(newplayerKitchen);

@@ -21,7 +21,8 @@ namespace PatternsOfSale.Models
             this.AddSubscriber(manager);
 
             // Launch the timer forever on a seprate thread
-            Thread threadTimer = new Thread(() =>
+            //Thread threadTimer = new Thread(() =>
+            Task.Run(async () =>
             {
                 while (true)
                 {
@@ -32,8 +33,8 @@ namespace PatternsOfSale.Models
 
                 }
             });
-            threadTimer.IsBackground = true;
-            threadTimer.Start();
+            //threadTimer.IsBackground = true;
+            //threadTimer.Start();
         }
 
         public void AddSubscriber(TimerInterface subscriber)

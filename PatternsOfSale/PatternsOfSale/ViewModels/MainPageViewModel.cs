@@ -78,18 +78,27 @@ namespace PatternsOfSale.ViewModels
         {
             GameManager.StopGame();
             Timer.RemoveSubscriber(GameManager.Kitchen);
+            Timer.RemoveSubscriber(this);
+            ClearPickedItemList();
+            Items.Clear();
+            GameManager.GameStartTimeStamp = -1;
 
         }
 
         [RelayCommand]
         private async Task Submit()
         {
+            UpdateUI();
+
+        }
+
+        private void UpdateUI()
+        {
             GameManager.Kitchen.DishPickUpStation = PickedItems;
             ClearPickedItemList();
             GameManager.Submit();
             UpdateValues();
             AddAssignmentsToList();
-            
         }
 
         [RelayCommand]
@@ -139,6 +148,13 @@ namespace PatternsOfSale.ViewModels
         {
             Time = GameManager.TimeSinceLastOrder;
             TotalTime = GameManager.TimePlayed;
+
+            // if the player has not submitted the order in time (10sec), submit it automatically
+            // and new order is given
+            if (GameManager.TimeSinceLastOrder >= GameManager.TIMEDEADLINE)
+            {
+                UpdateUI();
+            }
         }
     }
 }

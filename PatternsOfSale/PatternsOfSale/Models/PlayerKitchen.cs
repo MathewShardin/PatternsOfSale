@@ -84,6 +84,7 @@ namespace PatternsOfSale.Models
         public void UpdateTime(long timestamp)
         {
             this.PassedSinceLastAssignment = timestamp - this.LastUnixTime;
+            this.LastUnixTime = timestamp;
         }
 
         public void NewGameRound(Customer cust, long timeStamp)
