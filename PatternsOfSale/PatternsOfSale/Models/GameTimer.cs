@@ -3,15 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace PatternsOfSale.Models
 {
     public class GameTimer
     {
         public List<TimerInterface> TimerInterfaces { get; set; }
+        private readonly object lockObject = new object();
+        private bool isRunning = false;
+        private const int TIMESPEED = 1000; //Speed of one Game Tick in milliseconds
 
-        
+
         public GameTimer() 
         {
             this.TimerInterfaces = new List<TimerInterface>();
@@ -29,10 +32,21 @@ namespace PatternsOfSale.Models
 
         public void SendTick()
         {
-            foreach(TimerInterface subscriber in TimerInterfaces)
+            lock (lockObject)
             {
-                long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                subscriber.UpdateTime(unixTimestamp);
+                if (isRunning)
+                {
+                    isRunning = true;
+
+                    foreach (TimerInterface subscriber in TimerInterfaces)
+                    {
+                        long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                        subscriber.UpdateTime(unixTimestamp);
+                    }
+
+                    // Release the lock after one second
+                    Timer timer = new Timer(state => { isRunning = false; }, null, TIMESPEED, Timeout.Infinite);
+                }
             }
         }
     }
