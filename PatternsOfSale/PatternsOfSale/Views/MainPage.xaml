@@ -38,30 +38,21 @@
         </Grid>
         <Button Text="{ Binding Score, StringFormat='Score: {0}' }" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#8B577A" CornerRadius="0"/>
         <Label Text="Next Order:" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
-        <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Assignment}">
+        <CollectionView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="OrderView" ItemsSource="{Binding Items}" HeightRequest="100">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type model:ItemInterface}">
-                    <Grid BackgroundColor="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="yes" Grid.Row="0" BackgroundColor="Orange"/>
-                    </Grid>
+                <DataTemplate>
+                    <Label Text="{Binding Items}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Label Text="You picked:" Grid.Column="1" Grid.Row="3" TextColor="Black"/>
-        <CollectionView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" BackgroundColor="Black" x:Name="PickedItemsView">
+        <CollectionView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="6" BackgroundColor="Black" ItemsLayout="HorizontalList" x:Name="PickedItemsView" ItemsSource="{Binding PickedItemsString}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="{Binding Assignment.DishAssignment}" Grid.Row="0" BackgroundColor="Orange"/>
-                    </Grid>
+                    <Label Text="{Binding PickedItemsString}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

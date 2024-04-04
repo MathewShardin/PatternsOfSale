@@ -71,6 +71,15 @@ namespace PatternsOfSale.ViewModels
             Score = GameManager.Kitchen.Score;
         }
 
+        [RelayCommand]
+        private async Task OrderButton(object sender)
+        {
+            //if(sender)
+            //{
+
+            //}
+        }
+
         private void AddAssignmentsToList()
         {
             Items.Clear();
@@ -78,7 +87,6 @@ namespace PatternsOfSale.ViewModels
             {
                 Items.Add(item.GetType().Name);
             }
-            var yes = "";
         }
 
         private void ClearPickedItemList()
