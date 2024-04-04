@@ -30,11 +30,21 @@ namespace PatternsOfSale
             GameTimer gameTimer = new GameTimer();
             gameTimer.AddSubscriber(gameManager);
 
-
-            while (gameManager.isGameRunning == true)
+            // Launch the timer forever on a seprate thread
+            Thread threadTimer = new Thread(() =>
             {
-                gameTimer.SendTick();
-            }
+                while (true)
+                {
+                    while (gameManager.isGameRunning == true)
+                    {
+                        gameTimer.SendTick();
+                    }
+
+                }
+            });
+            threadTimer.IsBackground = true;
+            threadTimer.Start();
+
 #if WINDOWS
         builder.ConfigureLifecycleEvents(events =>
         {
