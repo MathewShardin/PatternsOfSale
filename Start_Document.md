@@ -10,9 +10,9 @@ The game is based around a player cooking (choosing) the correct dishes to satis
 ##### Main game loop:
 1. Recieve a randomly generated order (assignment) from one of the customers. The tickets with dishes appear on top.
 2. Choose the correct dishes from the dish catalogue closing each ticket to satisfy the order. Don't forget to send it in to the customer!
-3. Recieve a score based on the order completed. Faster cooks get more points, while snails can actually loose them if an order isn't sent in time (10 seconds)!
+3. Recieve a score based on the order completed. Faster cooks get more points, while snails can actually lose them if an order isn't sent in time (10 seconds)!
 4. Repeat steps 1-3
-5. ??????
+5. ?????? 
 6. PROFIT!
 
 ##### Game features:
@@ -46,7 +46,7 @@ GUI Framework: .NET MAUI using MVVM
 
 
 ## Class Diagram
-![Class Diagram](PatternsOfSale_UML.png "Version 2.0 Class Diagram")
+![Class Diagram](PatternsOfSale_UML.png "Final Version Class Diagram")
 
 ## Design Patterns
 
