@@ -46,7 +46,7 @@ GUI Framework: .NET MAUI using MVVM
 
 
 ## Class Diagram
-![Class Diagram](PatternsOfSale_UML.png "Final Version Class Diagram")
+![Class Diagram](PatternsOfSale.png "Final Version Class Diagram")
 
 ## Design Patterns
 
