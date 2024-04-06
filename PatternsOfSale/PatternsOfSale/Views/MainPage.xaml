@@ -44,7 +44,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
+                    <Label Text="{Binding}" TextColor="White" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -55,7 +55,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding}" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
+                    <Label Text="{Binding}" TextColor="White" BackgroundColor="Orange" WidthRequest="100" Margin="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
