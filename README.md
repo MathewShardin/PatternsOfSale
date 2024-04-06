@@ -5,8 +5,9 @@ Asssignment completed by 3rd Year NHL Stenden Students:
 - Rob Veldman
 
 ### Installation Guide
+- Requirements: Windows
 1. Download the latest release
-2. Install the app using the .msix file
+2. Install the app using the .msix file located in the PatternsOfSale_1.0.2.0 folder
 
 For development:
 - Requirements: Preferably Windows OS, .NET 8 and MAUI installed
