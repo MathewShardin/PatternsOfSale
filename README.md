@@ -6,7 +6,7 @@ Asssignment completed by 3rd Year NHL Stenden Students:
 
 ### Installation Guide
 1. Download the latest release
-2. Run the .EXE file
+2. Install the app using the .msix file
 
 For development:
 - Requirements: Preferably Windows OS, .NET 8 and MAUI installed
